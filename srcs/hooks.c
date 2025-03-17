@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/17 19:07:39 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:23:05 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "mlx_setup.h"
 #include "hooks.h"
+#include "set_pix.h"
 
 /*
 these are only available on minilibx_linux for some reason?
@@ -34,7 +35,8 @@ int	loop_hook(t_hook_vars *hook_vars)
 {
 	if (hook_vars->need_rerender)
 	{
-		// !!! update display here !!!
+		// !!! update image here !!!
+		set_pix(hook_vars->mlx_vars->img, 100, 100, 255);
 		mlx_put_image_to_window(hook_vars->mlx_vars->mlx, hook_vars->mlx_vars->win, hook_vars->mlx_vars->img->img, 0, 0);
 	}
 	return (0);

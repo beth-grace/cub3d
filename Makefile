@@ -1,4 +1,4 @@
-SRC= $(addprefix srcs/,main.c mlx_setup.c hooks.c error.c)
+SRC= $(addprefix srcs/,main.c mlx_setup.c hooks.c error.c set_pix.c)
 OBJ= $(SRC:.c=.o)
 
 CC= cc

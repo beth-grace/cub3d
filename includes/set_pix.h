@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_pix.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/17 19:24:09 by cadlard          ###   ########.fr       */
+/*   Created: 2025/03/17 19:20:34 by cadlard           #+#    #+#             */
+/*   Updated: 2025/03/17 19:21:08 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#ifndef SET_PIX_H
+# define SET_PIX_H
 
-#include "error.h"
-#include "mlx_setup.h"
+# include "mlx_setup.h"
 
-int main(int argc, char *argv[])
-{
-	(void)argv;
-	if (argc != 2)
-	{
-		puterr("Usage: ./cub3d <.cub file>\n");
-		return ;
-	}
-	start_cub3d();
-	return (0);
-}
+void	set_pix(t_image *img, int x, int y, int colour);
+
+#endif
