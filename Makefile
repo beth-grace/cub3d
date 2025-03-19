@@ -1,21 +1,28 @@
-SRC= $(addprefix srcs/,main.c mlx_setup.c hooks.c error.c set_pix.c)
-OBJ= $(SRC:.c=.o)
+SRC= $(addprefix srcs/,\
+	main.c\
+	mlx_setup.c\
+	hooks.c\
+	error.c\
+	set_pix.c\
+	key_commands.c\
+	map_tingz.c\
+	maze_solver.c\
+)
+OBJ= $(patsubst %.c,%.o,$(SRC))
+DEP= $(patsubst %.c,%.d,$(SRC))
 
 CC= cc
-RM= rm -f
 
-CFLAGS= -Wall -Wextra -Werror -O3
+CFLAGS= -Wall -Wextra -Werror $(DEBUG_FLAGS) -Iminilibx -Ilibft
 LDFLAGS= $(CFLAGS)
 
 INCLUDES= "./includes"
-MLX= mlx
-MLX_A= mlx/libmlx.a
-LIBFT= libft
-LIBFT_A= libft/libft.a
+
+MLX=mlx
+LIBFT=ft
+
 LIBFLAGS= -L$(MLX) -l$(MLX) -L$(LIBFT) -lft -lm -lXext -lX11
 
-LIBFT_MAKE= make -C $(LIBFT)
-MLX_MAKE = make -C $(MLX)
 
 NAME= cub3d
 
@@ -24,25 +31,34 @@ NAME= cub3d
 
 all: $(NAME)
 
+debug: fclean debug_cflags $(NAME)
+
+debug_cflags:
+	@$(eval DEBUG_FLAGS = -g)
+
 $(NAME): $(OBJ) $(LIBFT_A) $(MLX_A)
 	$(CC) $(OBJ) $(CFLAGS) $(LIBFLAGS) -o $(NAME)
 
-$(LIBFT_A):
-	$(LIBFT_MAKE) all
+libft:
+	@$(MAKE) -C libft
+	@echo "Made libft"
 
-$(MLX_A):
-	$(MLX_MAKE) all
+mlx:
+	@$(MAKE) -C $(FMLX)
+	@echo "Made mlx"
+
+-include $(DEP)
+%.0: %.c
+	$(CC) $(CFLAGS) -MMD -c $< -o $@
 
 clean:
-	$(LIBFT_MAKE) clean
-	$(MLX_MAKE) clean
-	$(RM) $(OBJ)
+	rm -f $(OBJ) $(DEP)
+	make -C libft fclean
+	make -C minilibx clean
 
 fclean: clean
-	$(RM) $(LIBFT_A)
-	$(RM) $(MLX_A)
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft mlx

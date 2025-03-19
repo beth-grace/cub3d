@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/17 19:24:09 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/19 18:03:52 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		puterr("Usage: ./cub3d <.cub file>\n");
-		return ;
+		return (1);
 	}
 	start_cub3d();
 	return (0);
