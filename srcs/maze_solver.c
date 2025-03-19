@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/03/19 21:41:00 by beefie           ###   ########.fr       */
+/*   Updated: 2025/03/20 10:03:11 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,25 @@ char	**copy_map(t_cubed *game)
 	return (new_map);
 }
 
+int maze(t_cubed *game, char **new_map, int pos_y, int pos_x)
+{
+	if (pos_y < 0 || pos_x < 0)
+		return (1);
+	if (pos_y > game->height -1 || pos_x > game->width -1)
+		return (1);
+	if (new_map[pos_y][pos_x] == '1')
+		return (0);
+	if (new_map[pos_y][pos_x] == 'A')
+		return (0);
+	if (new_map[pos_y][pos_x] == ' ')
+		return (1);
+	// new_map[pos_y][pos_x] == 'A';
+	return (maze(game, new_map, pos_y + 1, pos_x)
+		|| maze(game, new_map, pos_y - 1, pos_x)
+		|| maze(game, new_map, pos_y, pos_x + 1)
+		|| maze(game, new_map, pos_y, pos_x - 1));
+}
+
 int	find_player(t_cubed *game)
 {
 	char	**new_map;
@@ -37,7 +56,7 @@ int	find_player(t_cubed *game)
 	{
 		pos_x = -1;
 		while (++pos_x <= game->width)
-			if (gane->map[pos_y][pos_x] == 'P')
+			if (game->map[pos_y][pos_x] == 'P')
 				break;
 		if (game->map[pos_y][pos_x] == 'P')
 			break;
@@ -46,27 +65,7 @@ int	find_player(t_cubed *game)
 	out = maze(game, new_map, pos_y, pos_x);
 	pos_y = game->height - 1;
 	while (pos_y >= 0)
-		free(new_map[pos_y--1]);
+		free(new_map[pos_y - 1]);
 	free(new_map);
 	return (out);
 }
-
-int maze(t_cubed *game, char **new_map, int pos_y, int pos_x)
-{
-	if (pos_y < 0 || pos_x < 0)
-		return (1);
-	if (pos_y > game->height -1 || pos_x > game-width -1)
-		return (1);
-	if (new_map[pos_y][pos_x] == '1')
-		return (0);
-	if (new_map[pos_y][pos_x] == 'A')
-		return (0);
-	if (new_map[pos_y][pos_x] == ' ')
-		return (1);
-	new_map[pos_y][pos_x] == 'A';
-	return (maze(game, new_map, pos_y + 1, pos_x)
-		|| maze(game, new_map, pos_y - 1, pos_x)
-		|| maze(game, new_map, pos_y, pos_x + 1)
-		|| maze(game, new_map, pos_y, pos_x - 1));
-}
-

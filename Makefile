@@ -19,7 +19,9 @@ LDFLAGS= $(CFLAGS)
 INCLUDES= "./includes"
 
 MLX=mlx
-LIBFT=ft
+LIBFT=libft
+LIBFT_A=$(LIBFT)/libft.a
+MLX_A=$(LIBFT)/mlx.a
 
 LIBFLAGS= -L$(MLX) -l$(MLX) -L$(LIBFT) -lft -lm -lXext -lX11
 
@@ -39,12 +41,12 @@ debug_cflags:
 $(NAME): $(OBJ) $(LIBFT_A) $(MLX_A)
 	$(CC) $(OBJ) $(CFLAGS) $(LIBFLAGS) -o $(NAME)
 
-libft:
+$(LIBFT_A):
 	@$(MAKE) -C libft
 	@echo "Made libft"
 
-mlx:
-	@$(MAKE) -C $(FMLX)
+$(MLX_A):
+	@$(MAKE) -C $(MLX)
 	@echo "Made mlx"
 
 -include $(DEP)

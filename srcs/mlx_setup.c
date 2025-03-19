@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:43 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/17 18:56:23 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/20 09:50:45 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ static int	init_win(t_mlx_vars *vars, t_image *img)
 	return (1);
 }
 
+/*
+	... in X11/X.h ...
+	#define DestroyNotify 17
+	#define StructureNotifyMask 1L << 17
+*/
 void	start_cub3d(void)
 {
 	t_image		img;

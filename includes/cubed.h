@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/03/19 21:41:07 by beefie           ###   ########.fr       */
+/*   Updated: 2025/03/20 09:57:00 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_cubed
 	int			w;
 	int			xlocation;
 	int			ylocation;
-	int			player_c
+	int			player_c;
 	char		**map;
 	void		*mlx;
 	void		*walls;
@@ -43,6 +43,6 @@ typedef struct s_cubed
 }	t_cubed;
 
 int		keycheck(int key_code, t_cubed *game);
-void	map_char_check(t_cubed);
+void	map_char_check(t_cubed *game);
 
 #endif
