@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/17 19:23:05 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/20 12:15:03 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "mlx_setup.h"
 #include "hooks.h"
 #include "set_pix.h"
+#include "cubed.h"
 
 /*
 these are only available on minilibx_linux for some reason?
@@ -44,7 +45,7 @@ int	loop_hook(t_hook_vars *hook_vars)
 
 int	key_hook(int keycode, t_hook_vars *hook_vars)
 {
-	if (keycode == ESCAPE_KEYCODE)
+	if (keycode == ESCAPE)
 	{
 		exit_cleanly(hook_vars);
 	}
