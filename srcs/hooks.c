@@ -6,57 +6,61 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/20 12:15:03 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/24 20:42:14 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <mlx.h>
+#include "libft.h"
 
 #include "mlx_setup.h"
-#include "hooks.h"
-#include "set_pix.h"
 #include "cubed.h"
 
 /*
 these are only available on minilibx_linux for some reason?
-	mlx_loop_end(vars->mlx_vars);
-	mlx_destroy_display(vars->mlx_vars);
+	mlx_loop_end(vars->mlx);
+	mlx_destroy_display(vars->mlx);
 */
-int	exit_cleanly(t_hook_vars *hook_vars)
+int	exit_cleanly(t_cubed *game)
 {
-	mlx_destroy_image(hook_vars->mlx_vars->mlx, hook_vars->mlx_vars->img->img);
-	mlx_destroy_window(hook_vars->mlx_vars->mlx, hook_vars->mlx_vars->win);
-	mlx_destroy_display(hook_vars->mlx_vars->mlx);
+	mlx_destroy_image(game->mlx->mlx, game->mlx->img->img);
+	mlx_destroy_window(game->mlx->mlx, game->mlx->win);
+	mlx_destroy_display(game->mlx->mlx);
 	exit(0);
 	return (0);
 }
 
-int	loop_hook(t_hook_vars *hook_vars)
+int	loop_hook(t_cubed *game)
 {
-	if (hook_vars->need_rerender)
+	if (game->rerender)
 	{
 		// !!! update image here !!!
-		set_pix(hook_vars->mlx_vars->img, 100, 100, 255);
-		mlx_put_image_to_window(hook_vars->mlx_vars->mlx, hook_vars->mlx_vars->win, hook_vars->mlx_vars->img->img, 0, 0);
+		for (int i = 0; i < 100; i++) {
+			set_pix(game->mlx->img, 100, 100 + i, 0xFFFFFF);
+		}
+		map_gen(game);
+		ft_printf("map read");
+		mlx_put_image_to_window(game->mlx->mlx, game->mlx->win,
+			game->mlx->img->img, 0, 0);
 	}
 	return (0);
 }
 
-int	key_hook(int keycode, t_hook_vars *hook_vars)
+int	key_hook(int keycode, t_cubed *game)
 {
 	if (keycode == ESCAPE)
 	{
-		exit_cleanly(hook_vars);
+		exit_cleanly(game);
 	}
 	return (0);
 }
 
-int	mouse_hook(int mousecode, int x, int y, t_hook_vars *hook_vars)
+int	mouse_hook(int mousecode, int x, int y, t_cubed *game)
 {
 	(void)x;
 	(void)y;
-	(void)hook_vars;
+	(void)game;
 	(void)mousecode;
 	return (0);
 }

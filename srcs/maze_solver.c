@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/03/20 10:03:11 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/20 12:08:36 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	**copy_map(t_cubed *game)
 {
+//might be useless, can delete.
 	char **new_map;
 	int		i;
 
@@ -36,7 +37,7 @@ int maze(t_cubed *game, char **new_map, int pos_y, int pos_x)
 		return (0);
 	if (new_map[pos_y][pos_x] == ' ')
 		return (1);
-	// new_map[pos_y][pos_x] == 'A';
+	new_map[pos_y][pos_x] = 'A';
 	return (maze(game, new_map, pos_y + 1, pos_x)
 		|| maze(game, new_map, pos_y - 1, pos_x)
 		|| maze(game, new_map, pos_y, pos_x + 1)

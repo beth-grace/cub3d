@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:52 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/17 18:56:12 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/24 20:33:11 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ typedef struct s_image
 	int		endian;
 }	t_image;
 
-typedef struct s_mlx_vars
+typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;
 	t_image		*img;
-}	t_mlx_vars;
+}	t_mlx;
 
+/*
 typedef struct s_hook_vars
 {
-	t_mlx_vars	*mlx_vars;
+	t_mlx	*mlx;
 	bool		need_rerender;
+	t_cubed	*game;
 }	t_hook_vars;
-
-
-void start_cub3d(void);
+*/
 
 #endif

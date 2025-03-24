@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/03/20 09:59:49 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/24 19:55:43 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,18 @@ void char_check(t_cubed *game, char *line)
 		index++;
 	}
 }
-
-int	map_wall_check(t_cubed *game)
-{
-	(void)game;
-	return (0);
-}
-
 void	map_char_check(t_cubed *game)
 {
-	int	i;
+	int index;
 
-	if (game->player_c != 1 || map_wall_check(game))
+	if (game->player_c != 1)
 	{
 		ft_printf("Error!:\nI Don't Like It >:((\n");
-		i = 0;
-		while (i < game->height)
+		index = 0;
+		while (index < game->height)
 		{
-			free(game->map[i]);
-			i++;
+			free(game->map[index]);
+			index++;
 		}
 		free(game->map);
 		exit(1);

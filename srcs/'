@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.h                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 18:33:09 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/20 12:14:03 by cadlard          ###   ########.fr       */
+/*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
+/*   Updated: 2025/03/24 19:16:34 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_H
-# define HOOKS_H
+#include <mlx.h>
 
-# include "mlx_setup.h"
+#include "error.h"
+#include "mlx_setup.h"
+#include "cubed.h"
 
-int	loop_hook(t_hook_vars *hook_vars);
-int	key_hook(int keycode, t_hook_vars *hook_vars);
-int	mouse_hook(int mousecode, int x, int y, t_hook_vars *hook_vars);
-int	exit_cleanly(t_hook_vars *hook_vars);
+int main(int argc, char *argv[])
+{
+	t_cubed	 game;
 
-#endif
+	(void)argv;
+	if (argc != 2)
+	{
+		puterr("Usage: ./cub3d <.cub file>\n");
+		return (1);
+	}
+	map_size(game,argv[1]);
+	read_map(game,argv[1]);
+	start_cub3d();
+	return (0);
+}

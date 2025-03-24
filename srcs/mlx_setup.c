@@ -6,18 +6,17 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:43 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/20 09:50:45 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/24 20:42:01 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <mlx.h>
-
+#include "cubed.h"
 #include "mlx_setup.h"
-#include "hooks.h"
 #include "error.h"
 
-static int	init_win(t_mlx_vars *vars, t_image *img)
+static int	init_win(t_mlx *vars, t_image *img)
 {
 	vars->mlx = mlx_init();
 	if (vars->mlx == NULL)
@@ -46,21 +45,23 @@ static int	init_win(t_mlx_vars *vars, t_image *img)
 	#define DestroyNotify 17
 	#define StructureNotifyMask 1L << 17
 */
-void	start_cub3d(void)
+void	start_cub3d(t_cubed *game)
 {
 	t_image		img;
-	t_mlx_vars	mlx_vars;
-	t_hook_vars	hook_vars;
+	t_mlx	mlx;
 
-	hook_vars.mlx_vars = &mlx_vars;
-	if (init_win(&mlx_vars, &img) == 0)
+	game->rerender = 1;
+	game->mlx = &mlx;
+	if (init_win(&mlx, &img) == 0)
 	{
 		puterr("Failed to initialise a window\n");
 		return ;
 	}
-	mlx_loop_hook(mlx_vars.mlx, loop_hook, &hook_vars);
-	mlx_key_hook(mlx_vars.win, key_hook, &hook_vars);
-	mlx_mouse_hook(mlx_vars.win, mouse_hook, &hook_vars);
-	mlx_hook(mlx_vars.win, 17, 1L << 17, exit_cleanly, &hook_vars);
-	mlx_loop(mlx_vars.mlx);
+	
+	mlx_loop_hook(mlx.mlx, loop_hook, &game);
+	mlx_key_hook(mlx.win, key_hook, &game);
+	mlx_mouse_hook(mlx.win, mouse_hook, &game);
+	mlx_hook(mlx.win, 17, 1L << 17, exit_cleanly, &game);
+	mlx_loop(mlx.mlx);
 }
+
