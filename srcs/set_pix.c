@@ -6,11 +6,12 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:17:56 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/24 20:21:30 by beefie           ###   ########.fr       */
+/*   Updated: 2025/03/26 18:19:28 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
+#include <libft.h>
 
 #include "mlx_setup.h"
 

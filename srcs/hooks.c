@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/24 20:42:14 by beefie           ###   ########.fr       */
+/*   Updated: 2025/03/26 18:19:35 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	exit_cleanly(t_cubed *game)
 
 int	loop_hook(t_cubed *game)
 {
-	if (game->rerender)
+	game->rerender = 1;
+	if (game->rerender == 1)
 	{
 		// !!! update image here !!!
 		for (int i = 0; i < 100; i++) {

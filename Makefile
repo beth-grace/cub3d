@@ -56,7 +56,7 @@ $(MLX_A):
 clean:
 	rm -f $(OBJ) $(DEP)
 	make -C libft fclean
-	make -C minilibx clean
+	make -C mlx clean
 
 fclean: clean
 	rm -f $(NAME)

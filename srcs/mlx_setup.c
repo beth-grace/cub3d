@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:43 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/24 20:42:01 by beefie           ###   ########.fr       */
+/*   Updated: 2025/03/26 18:20:28 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	start_cub3d(t_cubed *game)
 		puterr("Failed to initialise a window\n");
 		return ;
 	}
-	
-	mlx_loop_hook(mlx.mlx, loop_hook, &game);
-	mlx_key_hook(mlx.win, key_hook, &game);
-	mlx_mouse_hook(mlx.win, mouse_hook, &game);
-	mlx_hook(mlx.win, 17, 1L << 17, exit_cleanly, &game);
+	ft_printf("img ptr addr: %p\n", game->mlx->img);
+	mlx_loop_hook(mlx.mlx, loop_hook, game);
+	mlx_key_hook(mlx.win, key_hook, game);
+	mlx_mouse_hook(mlx.win, mouse_hook, game);
+	mlx_hook(mlx.win, 17, 1L << 17, exit_cleanly, game);
 	mlx_loop(mlx.mlx);
 }
 
