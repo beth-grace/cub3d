@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/26 18:19:35 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/03/31 16:31:04 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	loop_hook(t_cubed *game)
 			set_pix(game->mlx->img, 100, 100 + i, 0xFFFFFF);
 		}
 		map_gen(game);
-		ft_printf("map read");
 		mlx_put_image_to_window(game->mlx->mlx, game->mlx->win,
 			game->mlx->img->img, 0, 0);
 	}

@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/03/24 20:35:24 by beefie           ###   ########.fr       */
+/*   Updated: 2025/03/31 17:03:38 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	map_gen(t_cubed *game)
 	int	h;
 	int	w;
 
-	//game->walls = mlx_xmp_file_to_image((game->mlx,"asset/wall.xpm"),
-	//	&height, &width);
 	h = 0;
 	while (h < game->height)
 	{
@@ -58,7 +56,9 @@ void	map_gen(t_cubed *game)
 			{
 				set_pix(game->mlx->img, h, w, 0xFFFFFF);
 			}
-			else if (game->map[h][w] != '0')
+			else if (game->map[h][w] != '0' && (game->map[h][w] != 'N'
+				|| game->map[h][w] != 'E' || game->map[h][w] != 'S'
+					|| game->map[h][w] == 'W'))
 				char_error(game);
 			w++;
 		}

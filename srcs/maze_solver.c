@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/03/20 12:08:36 by beefie           ###   ########.fr       */
+/*   Updated: 2025/03/31 16:40:11 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	find_player(t_cubed *game)
 	int		out;
 	int		pos_y;
 	int		pos_x;
+	int		orient;
 
 	pos_y = 0;
 	new_map = copy_map(game);
@@ -57,10 +58,8 @@ int	find_player(t_cubed *game)
 	{
 		pos_x = -1;
 		while (++pos_x <= game->width)
-			if (game->map[pos_y][pos_x] == 'P')
+			if (game->map[pos_y][pos_x] == 'N')
 				break;
-		if (game->map[pos_y][pos_x] == 'P')
-			break;
 		pos_y++;
 	}
 	out = maze(game, new_map, pos_y, pos_x);

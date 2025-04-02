@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/03/24 19:55:43 by beefie           ###   ########.fr       */
+/*   Updated: 2025/03/31 16:43:41 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,26 @@ void char_check(t_cubed *game, char *line)
 	index = 0;
 	while (line[index])
 	{
-		if (line[index] == 'P')
+		if (line[index] == 'N' )
+		{
+			game->orient = 1;
+			game->playerc++;
+		}
+		else if (line[index] == 'E')
+		{
+			game->orient = 2;
+			game->playerc++;
+		}
+		else if (line[index] == 'S')
+		{
+			game->orient = 3;
+			game->playerc++;
+		}
+		else if (line[index] == 'W')
+		{
+			game->orient = 4;
 			game->player_c++;
+		}
 		index++;
 	}
 }
@@ -79,3 +97,5 @@ void	read_map(t_cubed *game, char *file)
 	}
 	close(fd);
 }
+
+void	player_orientation(t_cubed *cubed);

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/03/24 20:40:39 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/02 20:17:11 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "mlx_setup.h"
 # include <mlx.h>
 # include <stdbool.h>
+# include <math.h>
 
 
 # define ESCAPE		0xff1b
@@ -28,6 +29,10 @@
 # define KEY_S		0x73
 # define KEY_A		0x61
 # define KEY_D		0x64
+# define TILE_W		64
+# define TILE_H		64
+# define HEIGHT		600
+# define WIDTH		800
 
 typedef struct s_cubed
 {
@@ -37,7 +42,7 @@ typedef struct s_cubed
 	int			w;
 	int			xlocation;
 	int			ylocation;
-	int			player_c;
+	int			orient;
 	char		**map;
 	void		*walls;
 	t_mlx		*mlx;
@@ -49,6 +54,45 @@ typedef struct s_vec2
 	double	x;
 	double	y;
 }	t_vec2;
+
+typedef struct s_ray
+{
+	double	player[2];
+	double	camera_x;
+	double	raydir[2];
+	double	deltadist[2];
+	double	sidedist[2];
+	double	perpendicular;
+	int		side;
+	int		**map;
+}	t_ray;
+
+typedef struct	s_player
+{
+	double	player[2];
+	double	plane[2];
+	t_map	*map;
+	double	camera_x;
+	double	raydir[2];
+	double	deltadist[2];
+	double	sidedist[2];
+}	t_player;
+
+typedef struct s_map
+{
+	double	
+}	t_map;
+
+//Brehensen's line
+typdedef struct s_line
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	error;
+}	t_line;
+
 
 //key_commands
 int		keycheck(int key_code, t_cubed *game);
