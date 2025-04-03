@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/02 20:17:11 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/03 22:09:10 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,21 @@
 # define HEIGHT		600
 # define WIDTH		800
 
+# define BLACK 0x00000000
+# define BLUE  0x000000FF
+# define GREEN 0x0000FF00
+# define RED 0x00FF0000
+# define YELLOW 0x00FFFF00
+# define WHITE 0x00FFFFFF
+
+# define x 0
+# define y 1
+# define TARGET_FPS 1500
+# define PRINT_FPS 1
+# define DBL_MIN 2.2250738585072014e-308
+# define DBL_MAX 1.7976931348623157e+308
+# define M_PI 3.14159265358979323846
+
 typedef struct s_cubed
 {
 	int			height;
@@ -47,6 +62,8 @@ typedef struct s_cubed
 	void		*walls;
 	t_mlx		*mlx;
 	bool		rerender;
+	t_player	*player;
+	t_ray		*ray;
 }	t_cubed;
 
 typedef struct s_vec2
@@ -63,8 +80,10 @@ typedef struct s_ray
 	double	deltadist[2];
 	double	sidedist[2];
 	double	perpendicular;
+	double	rotation;
+	double	step[2];
 	int		side;
-	int		**map;
+	int		**bigmap;
 }	t_ray;
 
 typedef struct	s_player
@@ -76,11 +95,14 @@ typedef struct	s_player
 	double	raydir[2];
 	double	deltadist[2];
 	double	sidedist[2];
+	double	rotation;
+	t_ray	*ray;
 }	t_player;
 
 typedef struct s_map
 {
-	double	
+	int		pos_x;
+	int		pos_y;
 }	t_map;
 
 //Brehensen's line
@@ -121,4 +143,12 @@ void	set_pix(t_image *img, int x, int y, int colour);
 
 //mlx_setup
 void	start_cub3d(t_cubed *game);
+
+//map_render
+void	draw_line(t_image *img,int *start, int *end,int colour);
+void	perpendicular(t_map *map);
+
+//utils
+int	deg_to_rad(int n);
+int	rad_to_deg(int n);
 #endif

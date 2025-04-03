@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/03 14:30:01 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/03 21:02:30 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	find_player(t_cubed *game)
 	int		out;
 	int		pos_y;
 	int		pos_x;
-	int		orient;
 //finds player position
 	pos_y = 0;
 	new_map = copy_map(game);
@@ -58,8 +57,10 @@ int	find_player(t_cubed *game)
 	{
 		pos_x = -1;
 		while (++pos_x <= game->width)
-			if (game->map[pos_y][pos_x] == 'N' || game->map[pos_y][pos_x] == 'E'
-					|| game->map[pos_y][pos_x] == 'S' game->map[pos_y][pos_x] == 'W')
+			if (game->map[pos_y][pos_x] == 'N'
+				|| game->map[pos_y][pos_x] == 'E'
+				|| game->map[pos_y][pos_x] == 'S'
+				|| game->map[pos_y][pos_x] == 'W')
 				break;
 		pos_y++;
 	}
@@ -78,7 +79,8 @@ void	check_cub(int argc, char **argv)
 	index = 0;
 	while (argv[1][index] != '.')
 		index++;
-	if ((argv[2][index + 1] == 'c') && (argv[2][index + 2] == 'u') && (argv[2][index + 3] == 'b') && (argv[2][index + 4] == ' '))
+	if ((argv[2][index + 1] == 'c') && (argv[2][index + 2] == 'u')
+		&& (argv[2][index + 3] == 'b') && (argv[2][index + 4] == ' '))
 		return (0);
 	return (1);
 }

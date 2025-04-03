@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:50:05 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/03 14:33:45 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/03 22:08:55 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cubed.h"
@@ -59,5 +59,60 @@ void	draw_line(t_image *img int *start, int *end int colour)
 }
 
 }
-void	perpendicular(t_map *map)
+static void	perpendicular(t_map *map)
+//dda algo
+static void calc_step(t_player *player)
+{
+	if (player->raydir[x] < 0)
+	{
+		player->step[x] = -1;
+		player->sidedist[x] = (player->player[x] - player->map->map[x])
+			* player->deltadist[x];
+	}
+	else
+	{
+		player->step[x] = 1;
+		player->sidedist[x] = (player->map->map[x] + 1.0 - player->player[x])
+			* player->deltadist[x];
+	}
+	if (player->raydir[y] < 0)
+	{
+		player->step[y] = -1;
+		player->sidedist[y] = (player->player[y] - player->map->&map[y])
+			* player->deltadist[y];
+	}
+	else
+	{
+		player->step[y] = 1;
+		player->sidedist[y] = (player->map->&map[y]
+			+ 1.0 - player->player[y]) * player->deltadist[y];
+	}
+}
 
+static void	check_wall_hit(t_player *player)
+{
+	int	map[2];
+	int	hit;
+
+	hit = 0;
+	map[x] = player->player[x];
+	map[y] = player->player[y];
+	while (hit == 0)
+	{
+		if (player->sidedist[x] < player->sidedist[y])
+		{
+			player->sidedist[x] += player->deltadist[x];
+			map[x] += player->step[x];
+			player->side = 0;
+		}
+		else
+		{
+			player->sidedist[y] += player->deltadist[y];
+			map[y] += player->step[y];
+			player->side = 1;
+		}
+		if (bigmap[map[x]][map[y]] > 0)
+			hit = 1;
+	}
+	perpendicular(player);
+}
