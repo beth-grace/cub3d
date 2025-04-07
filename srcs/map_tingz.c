@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/03 14:28:40 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:07:10 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void char_check(t_cubed *game, char *line)
 		if (line[index] == 'N' )
 		{
 			game->orient = 1;
-			game->playerc++;
+			game->player_c++;
 		}
 		else if (line[index] == 'E')
 		{
 			game->orient = 2;
-			game->playerc++;
+			game->player_c++;
 		}
 		else if (line[index] == 'S')
 		{
 			game->orient = 3;
-			game->playerc++;
+			game->player_c++;
 		}
 		else if (line[index] == 'W')
 		{
@@ -46,9 +46,10 @@ void	map_char_check(t_cubed *game)
 {
 	int index;
 //will pick up invalid chars or too many players
-	if (game->player_c != 1)
+	if (game->player_c != 6)
 	{
 		ft_printf("Error!:\nI Don't Like It >:((\n");
+		ft_printf("Too many players!: %i\n", game->player_c);
 		index = 0;
 		while (index < game->height)
 		{

@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/03/31 17:03:38 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:37:00 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,31 @@
 	{}
 }
 */
+
+void draw_square(t_cubed *game, int x, int y, int colour)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < MAP_ZOOM && x + i < WIDTH)
+	{
+		j = 0;
+		while (j < MAP_ZOOM && y + j < HEIGHT)
+		{
+			set_pix(game->mlx->img, x + i, y + j, colour);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	map_gen(t_cubed *game)
 {
 	int	h;
 	int	w;
 
+	draw_square(game, 10000000, 200, 0xFFFFFF);
 	h = 0;
 	while (h < game->height)
 	{
@@ -53,13 +73,21 @@ void	map_gen(t_cubed *game)
 		while (w < game->width)
 		{
 			if (game->map[h][w] == '1')
-			{
-				set_pix(game->mlx->img, h, w, 0xFFFFFF);
-			}
-			else if (game->map[h][w] != '0' && (game->map[h][w] != 'N'
-				|| game->map[h][w] != 'E' || game->map[h][w] != 'S'
-					|| game->map[h][w] == 'W'))
-				char_error(game);
+				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0xFFFFFF);
+			else if (game->map[h][w] == '0')
+				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x5F5F5F);
+			else if (game->map[h][w] == 'N')
+				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
+			else if (game->map[h][w] == 'E')
+				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
+			else if (game->map[h][w] == 'S')
+				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
+			else if (game->map[h][w] == 'W')
+				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
+			else if (game->map[h][w] == ' ')
+				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
+			else
+				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0xFF0000);
 			w++;
 		}
 		h++;

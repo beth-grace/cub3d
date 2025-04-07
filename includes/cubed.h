@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/03 22:09:10 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:30:14 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,36 +41,21 @@
 # define YELLOW 0x00FFFF00
 # define WHITE 0x00FFFFFF
 
-# define x 0
-# define y 1
+# define MAP_ZOOM 8
+
+//# define x 0
+//# define y 1
 # define TARGET_FPS 1500
 # define PRINT_FPS 1
 # define DBL_MIN 2.2250738585072014e-308
 # define DBL_MAX 1.7976931348623157e+308
 # define M_PI 3.14159265358979323846
 
-typedef struct s_cubed
+typedef struct s_map
 {
-	int			height;
-	int			width;
-	int			h;
-	int			w;
-	int			xlocation;
-	int			ylocation;
-	int			orient;
-	char		**map;
-	void		*walls;
-	t_mlx		*mlx;
-	bool		rerender;
-	t_player	*player;
-	t_ray		*ray;
-}	t_cubed;
-
-typedef struct s_vec2
-{
-	double	x;
-	double	y;
-}	t_vec2;
+	int		pos_x;
+	int		pos_y;
+}	t_map;
 
 typedef struct s_ray
 {
@@ -99,14 +84,32 @@ typedef struct	s_player
 	t_ray	*ray;
 }	t_player;
 
-typedef struct s_map
+typedef struct s_cubed
 {
-	int		pos_x;
-	int		pos_y;
-}	t_map;
+	int			height;
+	int			width;
+	int			player_c;
+	int			h;
+	int			w;
+	int			xlocation;
+	int			ylocation;
+	int			orient;
+	char		**map;
+	void		*walls;
+	t_mlx		*mlx;
+	bool		rerender;
+	t_player	*player;
+	t_ray		*ray;
+}	t_cubed;
+
+typedef struct s_vec2
+{
+	double	x;
+	double	y;
+}	t_vec2;
 
 //Brehensen's line
-typdedef struct s_line
+typedef struct s_line
 {
 	int	dx;
 	int	dy;
