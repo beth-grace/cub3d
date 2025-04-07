@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:50:05 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/03 22:08:55 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/08 01:22:09 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cubed.h"
@@ -15,14 +15,14 @@ static t_line	set_line(int *start, int *end)
 {
 	t_line	line;
 
-	line.dx = abs(end[x] -start[x]);
-	line.dy = abs(end[y] - start[y]);
+	line.dx = abs(end[X] - start[X]);
+	line.dy = abs(end[Y] - start[Y]);
 
-	if (start[x] < end[x])
+	if (start[X] < end[X])
 		line.sx = 1;
 	else
 		line.sx = -1;
-	if (star[y] < end[y])
+	if (star[Y] < end[Y])
 		line.sy = 1;
 	else
 		line.sy = -1;
@@ -30,7 +30,7 @@ static t_line	set_line(int *start, int *end)
 	return (line);
 }
 //ripped someones bresenham algo implementation
-//claculates best pixel to draw lines with
+//calculates best pixel to draw lines with
 void	draw_line(t_image *img int *start, int *end int colour)
 {
 	t_line	line;
@@ -38,10 +38,10 @@ void	draw_line(t_image *img int *start, int *end int colour)
 	int	y0;
 	int	e2;
 
-	x0 = start[x];
-	y0 = start[y];
+	x0 = start[X];
+	y0 = start[Y];
 	line = set_values(start, end);
-	while (x0 != end[x] || y0 != end[y])
+	while (x0 != end[X] || y0 != end[Y])
 	{
 		set_pix(img, x0, y0, colour);
 		e2 = 2 * line.err;
@@ -59,33 +59,40 @@ void	draw_line(t_image *img int *start, int *end int colour)
 }
 
 }
-static void	perpendicular(t_map *map)
-//dda algo
+static void	perpendicular(t_player *player)
+{
+	if (player->side == 0)
+		player->perp = ptr->sidedist[Y] - player->deltadist[Y];
+	else
+		player->perp = player->sidedist[X] - player->deltadist[X];
+}
+
+//dda algo shoutout lodev
 static void calc_step(t_player *player)
 {
-	if (player->raydir[x] < 0)
+	if (player->raydir[X] < 0)
 	{
-		player->step[x] = -1;
-		player->sidedist[x] = (player->player[x] - player->map->map[x])
-			* player->deltadist[x];
+		player->step[X] = -1;
+		player->sidedist[X] = (player->player[X] - player->map->map[X])
+			* player->deltadist[X];
 	}
 	else
 	{
-		player->step[x] = 1;
-		player->sidedist[x] = (player->map->map[x] + 1.0 - player->player[x])
-			* player->deltadist[x];
+		player->step[X] = 1;
+		player->sidedist[X] = (player->map->map[X] + 1.0 - player->player[X])
+			* player->deltadist[X];
 	}
-	if (player->raydir[y] < 0)
+	if (player->raydir[Y] < 0)
 	{
-		player->step[y] = -1;
-		player->sidedist[y] = (player->player[y] - player->map->&map[y])
-			* player->deltadist[y];
+		player->step[Y] = -1;
+		player->sidedist[Y] = (player->player[Y] - player->map->&map[Y])
+			* player->deltadist[Y];
 	}
 	else
 	{
-		player->step[y] = 1;
-		player->sidedist[y] = (player->map->&map[y]
-			+ 1.0 - player->player[y]) * player->deltadist[y];
+		player->step[Y] = 1;
+		player->sidedist[Y] = (player->map->&map[Y]
+			+ 1.0 - player->player[Y]) * player->deltadist[Y];
 	}
 }
 
@@ -95,23 +102,23 @@ static void	check_wall_hit(t_player *player)
 	int	hit;
 
 	hit = 0;
-	map[x] = player->player[x];
-	map[y] = player->player[y];
+	map[X] = player->player[X];
+	map[Y] = player->player[Y];
 	while (hit == 0)
 	{
-		if (player->sidedist[x] < player->sidedist[y])
+		if (player->sidedist[X] < player->sidedist[Y])
 		{
-			player->sidedist[x] += player->deltadist[x];
-			map[x] += player->step[x];
+			player->sidedist[X] += player->deltadist[X];
+			map[X] += player->step[X];
 			player->side = 0;
 		}
 		else
 		{
-			player->sidedist[y] += player->deltadist[y];
-			map[y] += player->step[y];
+			player->sidedist[Y] += player->deltadist[Y];
+			map[Y] += player->step[Y];
 			player->side = 1;
 		}
-		if (bigmap[map[x]][map[y]] > 0)
+		if (bigmap[map[X]][map[Y]] > 0)
 			hit = 1;
 	}
 	perpendicular(player);

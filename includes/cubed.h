@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/07 15:30:14 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/08 01:25:10 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@
 # define WHITE 0x00FFFFFF
 
 # define MAP_ZOOM 8
-
-//# define x 0
-//# define y 1
+# define X 0
+# define Y 1
 # define TARGET_FPS 1500
 # define PRINT_FPS 1
 # define DBL_MIN 2.2250738585072014e-308
@@ -81,6 +80,7 @@ typedef struct	s_player
 	double	deltadist[2];
 	double	sidedist[2];
 	double	rotation;
+	double	perp;
 	t_ray	*ray;
 }	t_player;
 
@@ -149,7 +149,7 @@ void	start_cub3d(t_cubed *game);
 
 //map_render
 void	draw_line(t_image *img,int *start, int *end,int colour);
-void	perpendicular(t_map *map);
+void	perpendicular(t_player *player);
 
 //utils
 int	deg_to_rad(int n);
