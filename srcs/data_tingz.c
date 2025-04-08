@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:41:44 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/08 13:21:18 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/08 13:25:47 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,6 @@ void	add_texture(t_cubed *game, char *line, t_dir dir)
 		&tex->width,
 		&tex->height
 	);
-	/*if (game->textures[dir] == NULL)
-		game->textures[dir].img.data = mlx_png_file_to_image(
-			game->mlx,
-			path_ptr,
-			&game->textures[ident].width,
-			&game->textures[ident].height
-		);*/
 	if (tex->img.data == NULL)
 	{
 		ft_printf("Bad texture: '%s'\n", path_ptr);
