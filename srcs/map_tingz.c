@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/07 15:07:10 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/08 11:25:43 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	map_char_check(t_cubed *game)
 {
 	int index;
 //will pick up invalid chars or too many players
-	if (game->player_c != 6)
+	if (game->player_c != 1)
 	{
 		ft_printf("Error!:\nI Don't Like It >:((\n");
-		ft_printf("Too many players!: %i\n", game->player_c);
+		ft_printf("Bad amount of players!: %i\n", game->player_c);
 		index = 0;
 		while (index < game->height)
 		{
@@ -61,6 +61,20 @@ void	map_char_check(t_cubed *game)
 	}
 }
 
+bool is_data_line(const char *line)
+{
+	if (line == NULL)
+		return (false);
+	return (
+		ft_strncmp(line, "NO", 2) == 0
+		|| ft_strncmp(line, "SO", 2) == 0
+		|| ft_strncmp(line, "EA", 2) == 0
+		|| ft_strncmp(line, "WE", 2) == 0
+		|| ft_strncmp(line, "F", 1) == 0
+		|| ft_strncmp(line, "C", 1) == 0
+	);
+}
+
 void	map_size(t_cubed *game, char *file)
 {
 	char	*line;
@@ -70,6 +84,12 @@ void	map_size(t_cubed *game, char *file)
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (is_data_line(line) || line[0] == '\0' || line[0] == '\n')
+		{
+			free(line);
+			line = get_next_line(fd);
+			continue ;
+		}
 		if (game->width == 0)
 			game->width = ft_strlen(line) - 1;
 		else if (game->width < (int)ft_strlen(line) - 1)
@@ -87,13 +107,31 @@ void	read_map(t_cubed *game, char *file)
 {
 	int		index;
 	int		fd;
+	char	*line;
 //reads map/file parseing
 	index = 0;
 	fd = open(file, O_RDONLY);
 	game->map = (char **)malloc((game->height + 1) * sizeof(char *));
+	if (game->map == NULL)
+		return; // TODO: L
 	while (index < game->height)
 	{
-		game->map[index] = get_next_line(fd);
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		if (line[0] == '\0' || line[0] == '\n')
+		{
+			free(line);
+			continue ;
+		}
+		if (is_data_line(line))
+		{
+			// TODO: do stuff with data
+			free(line);
+			continue ;
+		}
+		else 
+			game->map[index] = line;
 		index++;
 	}
 	close(fd);

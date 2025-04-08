@@ -2,8 +2,10 @@ NO ./tex.xpm
 SO ./tex.xpm
 WE ./tex.xpm
 EA ./tex.xpm
+
 F 220,100,0
 C 225,30,0
+
 1111111
 1000N01
 1111111

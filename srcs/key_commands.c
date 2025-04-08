@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/07 15:37:00 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/07 16:00:18 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	map_gen(t_cubed *game)
 	while (h < game->height)
 	{
 		w = 0;
-		while (w < game->width)
+		while (game->map[h][w] != '\0')
 		{
 			if (game->map[h][w] == '1')
 				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0xFFFFFF);
@@ -85,7 +85,7 @@ void	map_gen(t_cubed *game)
 			else if (game->map[h][w] == 'W')
 				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
 			else if (game->map[h][w] == ' ')
-				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
+				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x0000FF);
 			else
 				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0xFF0000);
 			w++;
