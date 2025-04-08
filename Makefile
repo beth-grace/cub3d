@@ -6,6 +6,7 @@ SRC= $(addprefix srcs/,\
 	set_pix.c\
 	key_commands.c\
 	map_tingz.c\
+	data_tingz.c\
 	maze_solver.c\
 )
 OBJ= $(patsubst %.c,%.o,$(SRC))

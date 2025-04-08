@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:52 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/02 20:17:41 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/08 12:54:50 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct s_image
 {
-	void	*img;
+	void	*data;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;

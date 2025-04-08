@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/08 11:25:43 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/08 12:29:13 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void char_check(t_cubed *game, char *line)
 		index++;
 	}
 }
+
 void	map_char_check(t_cubed *game)
 {
 	int index;
@@ -59,20 +60,6 @@ void	map_char_check(t_cubed *game)
 		free(game->map);
 		exit(1);
 	}
-}
-
-bool is_data_line(const char *line)
-{
-	if (line == NULL)
-		return (false);
-	return (
-		ft_strncmp(line, "NO", 2) == 0
-		|| ft_strncmp(line, "SO", 2) == 0
-		|| ft_strncmp(line, "EA", 2) == 0
-		|| ft_strncmp(line, "WE", 2) == 0
-		|| ft_strncmp(line, "F", 1) == 0
-		|| ft_strncmp(line, "C", 1) == 0
-	);
 }
 
 void	map_size(t_cubed *game, char *file)
@@ -119,14 +106,15 @@ void	read_map(t_cubed *game, char *file)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (line[0] == '\0' || line[0] == '\n')
+		else if (line[0] == '\0' || line[0] == '\n')
 		{
 			free(line);
 			continue ;
 		}
+		strip_newline(line);
 		if (is_data_line(line))
 		{
-			// TODO: do stuff with data
+			add_data(game, line);
 			free(line);
 			continue ;
 		}

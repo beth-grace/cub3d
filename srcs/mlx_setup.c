@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:43 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/26 18:20:28 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/08 12:59:13 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static int	init_win(t_mlx *vars, t_image *img)
 		free(vars->mlx);
 		return (0);
 	}
-	img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
-	if (img->img == NULL)
+	img->data = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
+	if (img->data == NULL)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		free(vars->mlx);
 		return (0);
 	}
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+	img->addr = mlx_get_data_addr(img->data, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	vars->img = img;
 	return (1);

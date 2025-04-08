@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/08 01:25:10 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/08 12:54:38 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,21 @@
 # define DBL_MIN 2.2250738585072014e-308
 # define DBL_MAX 1.7976931348623157e+308
 # define M_PI 3.14159265358979323846
+
+typedef enum e_dir
+{
+	NO = 0,
+	SO = 1,
+	WE = 2,
+	EA = 3
+}	t_dir;
+
+typedef struct s_texture
+{
+	t_image	img;
+	int		height;
+	int		width;
+}	t_texture;
 
 typedef struct s_map
 {
@@ -100,6 +115,7 @@ typedef struct s_cubed
 	bool		rerender;
 	t_player	*player;
 	t_ray		*ray;
+	t_texture	textures[4];
 }	t_cubed;
 
 typedef struct s_vec2
@@ -128,6 +144,11 @@ void	char_error(t_cubed *game);
 char	**copy_map(t_cubed *game);
 int		maze(t_cubed *game, char **new_map, int pos_y, int pos_x);
 int		find_player(t_cubed *game);
+
+//data_tingz
+bool	is_data_line(const char *line);
+void	add_data(t_cubed *game, char *line);
+void	strip_newline(char *str);
 
 //map_tingz
 void	char_check(t_cubed *game, char *line);
