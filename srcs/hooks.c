@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/09 13:25:16 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:48:10 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,15 @@ int	exit_cleanly(t_cubed *game)
 
 int	loop_hook(t_cubed *game)
 {
-	game->rerender = 1;
 	if (game->rerender == 1)
 	{
 		// !!! update image here !!!
 		map_gen(game);
+		for (int y = 0; y < game->textures[0].height; y++) {
+			for (int x = 0; x < game->textures[0].width; x++) {
+				set_pix(game->mlx.img, x + 150, y + 150, get_pix(&game->textures[0].img, x, y));
+			}
+		}
 		mlx_put_image_to_window(game->mlx.data, game->mlx.win,
 			game->mlx.img->data, 0, 0);
 	}

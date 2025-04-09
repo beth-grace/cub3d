@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/09 13:36:43 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:46:56 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ int	mouse_hook(int mousecode, int x, int y, t_cubed *game);
 int	exit_cleanly(t_cubed *game);
 
 //set_pix.c
+int		get_pix(t_image *img, int x, int y);
 void	set_pix(t_image *img, int x, int y, int colour);
 
 //mlx_setup

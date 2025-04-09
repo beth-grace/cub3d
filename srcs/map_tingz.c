@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/09 13:31:30 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:47:16 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	read_map(t_cubed *game, char *file)
 	while (index < game->height)
 	{
 		line = get_next_line(fd);
-		ft_printf("%s", line);
 		if (line == NULL)
 			break ;
 		else if (line[0] == '\0' || line[0] == '\n')
