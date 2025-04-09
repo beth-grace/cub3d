@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/07 16:00:18 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:25:40 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void draw_square(t_cubed *game, int x, int y, int colour)
 		j = 0;
 		while (j < MAP_ZOOM && y + j < HEIGHT)
 		{
-			set_pix(game->mlx->img, x + i, y + j, colour);
+			set_pix(game->mlx.img, x + i, y + j, colour);
 			j++;
 		}
 		i++;

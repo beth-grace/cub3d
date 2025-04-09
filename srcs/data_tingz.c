@@ -6,13 +6,29 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:41:44 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/08 13:25:47 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:28:44 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <mlx.h>
 #include "cubed.h"
+
+void	data_check(const t_cubed *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (game->textures[i].img.data == NULL)
+		{
+			ft_printf("Empty texture: BAD\n");
+			exit(2);
+		}
+		i++;
+	}
+}
 
 bool is_data_line(const char *line)
 {
@@ -41,7 +57,7 @@ void	strip_newline(char *str)
 	}
 }
 
-void	add_texture(t_cubed *game, char *line, t_dir dir)
+static void	add_texture(t_cubed *game, char *line, t_dir dir)
 {
 	int			i;
 	char		*path_ptr;
@@ -53,9 +69,9 @@ void	add_texture(t_cubed *game, char *line, t_dir dir)
 	while (line[i] == ' ')
 		i++;
 	path_ptr = line + i;
-	tex = &game->textures[dir];
+	tex = &(game->textures[dir]);
 	tex->img.data = mlx_xpm_file_to_image(
-		game->mlx,
+		game->mlx.data,
 		path_ptr,
 		&tex->width,
 		&tex->height

@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:43 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/08 12:59:13 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:36:57 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@
 #include "mlx_setup.h"
 #include "error.h"
 
-static int	init_win(t_mlx *vars, t_image *img)
+static int	init_win(t_mlx *mlx, t_image *img)
 {
-	vars->mlx = mlx_init();
-	if (vars->mlx == NULL)
+	mlx->data = mlx_init();
+	if (mlx->data == NULL)
 		return (0);
-	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "cub3d");
-	if (vars->win == NULL)
+	mlx->win = mlx_new_window(mlx->data, WIDTH, HEIGHT, "cub3d");
+	if (mlx->win == NULL)
 	{
-		free(vars->mlx);
+		free(mlx->data);
 		return (0);
 	}
-	img->data = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
+	img->data = mlx_new_image(mlx->data, WIDTH, HEIGHT);
 	if (img->data == NULL)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		free(vars->mlx);
+		mlx_destroy_window(mlx->data, mlx->win);
+		free(mlx->data);
 		return (0);
 	}
 	img->addr = mlx_get_data_addr(img->data, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
-	vars->img = img;
+	mlx->img = img;
 	return (1);
 }
 
@@ -45,23 +45,17 @@ static int	init_win(t_mlx *vars, t_image *img)
 	#define DestroyNotify 17
 	#define StructureNotifyMask 1L << 17
 */
-void	start_cub3d(t_cubed *game)
+void	mlx_setup(t_cubed *game, t_image *img_hack)
 {
-	t_image		img;
-	t_mlx	mlx;
-
 	game->rerender = 1;
-	game->mlx = &mlx;
-	if (init_win(&mlx, &img) == 0)
+	if (init_win(&game->mlx, img_hack) == 0)
 	{
 		puterr("Failed to initialise a window\n");
 		return ;
 	}
-	ft_printf("img ptr addr: %p\n", game->mlx->img);
-	mlx_loop_hook(mlx.mlx, loop_hook, game);
-	mlx_key_hook(mlx.win, key_hook, game);
-	mlx_mouse_hook(mlx.win, mouse_hook, game);
-	mlx_hook(mlx.win, 17, 1L << 17, exit_cleanly, game);
-	mlx_loop(mlx.mlx);
+	mlx_loop_hook(game->mlx.data, loop_hook, game);
+	mlx_key_hook(game->mlx.win, key_hook, game);
+	mlx_mouse_hook(game->mlx.win, mouse_hook, game);
+	mlx_hook(game->mlx.win, 17, 1L << 17, exit_cleanly, game);
 }
 

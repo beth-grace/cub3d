@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/08 12:54:38 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:36:43 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_cubed
 	int			orient;
 	char		**map;
 	void		*walls;
-	t_mlx		*mlx;
+	t_mlx		mlx;
 	bool		rerender;
 	t_player	*player;
 	t_ray		*ray;
@@ -146,6 +146,7 @@ int		maze(t_cubed *game, char **new_map, int pos_y, int pos_x);
 int		find_player(t_cubed *game);
 
 //data_tingz
+void	data_check(const t_cubed *game);
 bool	is_data_line(const char *line);
 void	add_data(t_cubed *game, char *line);
 void	strip_newline(char *str);
@@ -166,7 +167,7 @@ int	exit_cleanly(t_cubed *game);
 void	set_pix(t_image *img, int x, int y, int colour);
 
 //mlx_setup
-void	start_cub3d(t_cubed *game);
+void	mlx_setup(t_cubed *game, t_image *img);
 
 //map_render
 void	draw_line(t_image *img,int *start, int *end,int colour);

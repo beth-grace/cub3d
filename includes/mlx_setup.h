@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:52 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/08 12:54:50 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:19:43 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_image
 
 typedef struct s_mlx
 {
-	void		*mlx;
+	void		*data;
 	void		*win;
 	t_image		*img;
 }	t_mlx;
