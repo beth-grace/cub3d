@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/09 14:48:10 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/14 13:09:46 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,26 @@ these are only available on minilibx_linux for some reason?
 */
 int	exit_cleanly(t_cubed *game)
 {
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		mlx_destroy_image(game->mlx.data, game->textures[i].img.data);
+		i++;
+	}
+	i = 0;
+	while (i < game->height)
+	{
+		if (game->map[i] != NULL)
+			free(game->map[i]);
+		i++;
+	}
+	free(game->map);
 	mlx_destroy_image(game->mlx.data, game->mlx.img->data);
 	mlx_destroy_window(game->mlx.data, game->mlx.win);
 	mlx_destroy_display(game->mlx.data);
+	free(game->mlx.data);
 	exit(0);
 	return (0);
 }
