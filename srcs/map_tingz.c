@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/09 16:47:16 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/15 17:09:08 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,3 +125,37 @@ void	read_map(t_cubed *game, char *file)
 	close(fd);
 }
 
+//for North only atm
+void	set_orient(t_cubed *game)
+{
+	if(game->orient == 1 || game->orient == 3)
+	{
+		game->player.plane[Y] = 0.0;
+		game->player.look_orient[X] = 0.0;
+		if (game->orient == 1)
+		{
+			game->player.plane[X] = 0.66;
+			game->player.look_orient[Y] = -1.0;
+		}
+		else if (game->orient == 3)
+		{
+			game->player.plane[X] = -0.66;
+			game->player.look_orient[Y] = 1.0;
+		}
+	}
+	else
+	{
+		game->player.plane[X] = 0.0;
+		game->player.look_orient[Y] = 0.0;
+		if (game->orient == 2)
+		{
+			game->player.plane[Y] = 0.66;
+			game->player.look_orient[X] = 1.0;
+		}
+		else if (game->orient == 4)
+		{
+			game->player.plane[Y] = -0.66;
+			game->player.look_orient[X] = -1.0;
+		}
+	}
+}

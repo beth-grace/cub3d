@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/14 13:09:46 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/15 20:42:31 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ int	loop_hook(t_cubed *game)
 	if (game->rerender == 1)
 	{
 		// !!! update image here !!!
-		map_gen(game);
-		for (int y = 0; y < game->textures[0].height; y++) {
-			for (int x = 0; x < game->textures[0].width; x++) {
-				set_pix(game->mlx.img, x + 150, y + 150, get_pix(&game->textures[0].img, x, y));
-			}
-		}
+	//	map_gen(game);
+		//for (int y = 0; y < game->textures[0].height; y++) {
+		//	for (int x = 0; x < game->textures[0].width; x++) {
+		//		set_pix(game->mlx.img, x + 150, y + 150, get_pix(&game->textures[0].img, x, y));
+		//	}
+		//}
+		//draw_floor(game);
+		raycast(game);
 		mlx_put_image_to_window(game->mlx.data, game->mlx.win,
 			game->mlx.img->data, 0, 0);
 	}

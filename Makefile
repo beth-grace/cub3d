@@ -8,6 +8,8 @@ SRC= $(addprefix srcs/,\
 	map_tingz.c\
 	data_tingz.c\
 	maze_solver.c\
+	map_render.c\
+	raycast.c\
 )
 OBJ= $(patsubst %.c,%.o,$(SRC))
 DEP= $(patsubst %.c,%.d,$(SRC))

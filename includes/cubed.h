@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/09 14:46:56 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/15 20:49:28 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@
 # define Y 1
 # define TARGET_FPS 1500
 # define PRINT_FPS 1
-# define DBL_MIN 2.2250738585072014e-308
-# define DBL_MAX 1.7976931348623157e+308
+//# define DBL_MIN 2.2250738585072014e-308
+//# define DBL_MAX 1.7976931348623157e+308
 # define M_PI 3.14159265358979323846
 
 typedef enum e_dir
@@ -71,32 +71,23 @@ typedef struct s_map
 	int		pos_y;
 }	t_map;
 
-typedef struct s_ray
-{
-	double	player[2];
-	double	camera_x;
-	double	raydir[2];
-	double	deltadist[2];
-	double	sidedist[2];
-	double	perpendicular;
-	double	rotation;
-	double	step[2];
-	int		side;
-	int		**bigmap;
-}	t_ray;
 
+struct s_cubed;
 typedef struct	s_player
 {
 	double	player[2];
 	double	plane[2];
-	t_map	*map;
+	struct s_cubed	*game;
 	double	camera_x;
 	double	raydir[2];
 	double	deltadist[2];
 	double	sidedist[2];
 	double	rotation;
+	double	look_orient[2];
 	double	perp;
-	t_ray	*ray;
+	int		step[2];
+	int		side;
+	t_map	*map;
 }	t_player;
 
 typedef struct s_cubed
@@ -113,26 +104,25 @@ typedef struct s_cubed
 	void		*walls;
 	t_mlx		mlx;
 	bool		rerender;
-	t_player	*player;
-	t_ray		*ray;
+	t_player	player;
 	t_texture	textures[4];
 }	t_cubed;
 
-typedef struct s_vec2
+/*typedef struct s_vec2
 {
 	double	x;
 	double	y;
-}	t_vec2;
+}	t_vec2;*/
 
 //Brehensen's line
-typedef struct s_line
+/*typedef struct s_line
 {
 	int	dx;
 	int	dy;
 	int	sx;
 	int	sy;
-	int	error;
-}	t_line;
+	int	err;
+}	t_line;*/
 
 
 //key_commands
@@ -156,6 +146,17 @@ void	char_check(t_cubed *game, char *line);
 void	map_char_check(t_cubed *game);
 void	map_size(t_cubed *game, char *file);
 void	read_map(t_cubed *game, char *file);
+void	set_orient(t_cubed *game);
+
+//map_render
+void	draw_line(t_image *img, int *start, int *end, int colour);
+void	calc_step(t_player *player);
+void	check_wall_hit(t_player *player);
+
+//raycast
+void	raycast(t_cubed *game);
+void	draw_wall(t_cubed *game,int index);
+void	draw_floor(t_cubed *game);
 
 //hooks
 int	loop_hook(t_cubed *game);

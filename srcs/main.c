@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/09 13:36:10 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/15 16:59:11 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int main(int argc, char *argv[])
 	ft_printf("mapcheck\n");
 	data_check(&game);
 	ft_printf("datacheck\n");
+	set_orient(&game);
+	ft_printf("set orient\n");
 	mlx_loop(game.mlx.data);
 	ft_printf("after mlx\n");
 	return (0);
