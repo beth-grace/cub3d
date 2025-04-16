@@ -6,41 +6,12 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/09 13:25:40 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/16 17:43:13 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cubed.h"
-
-/*int keycheck(int key_code, t_cubed *game)
-{
-//	int	pot_y;
-//	int pot_x;
-
-	pot_y = 1;
-	pot_x = 1;
-	pot_y = game->ylocation;
-	pot_x = game->xlocation;
-	ft_printf("keycode: '%i'\n");
-	
-	if (key_code == ESCAPE) {}
-	else if (key_code == KEY_W){}
-	else if (key_code == KEY_A) {}
-	else if (key_code == KEY_S) {}
-	else if (key_code == KEY_D) {}
-	else
-		return(0);
-	//moving(game this function will change point of view));
-	return (0);
-}*/
-
-/*void	moving(t_cubed *game, int pos_y, int pox_x)
-{
-	if (game->map[pot_y][pot_x] == '1')
-	{}
-}
-*/
 
 void draw_square(t_cubed *game, int x, int y, int colour)
 {
