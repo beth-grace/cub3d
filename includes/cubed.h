@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/15 20:49:28 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/16 14:16:16 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	add_data(t_cubed *game, char *line);
 void	strip_newline(char *str);
 
 //map_tingz
-void	char_check(t_cubed *game, char *line);
+void	char_check(t_cubed *game, char *line, int line_num);
 void	map_char_check(t_cubed *game);
 void	map_size(t_cubed *game, char *file);
 void	read_map(t_cubed *game, char *file);

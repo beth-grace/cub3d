@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:18:50 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/15 20:48:53 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/16 14:11:05 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	raycast(t_cubed *game)
 
 	index = 0;
 	player = &game->player;
+	player->game = game;
 	while (index < WIDTH)
 	{
 		player->camera_x = 2 * index / (double)WIDTH -1;
@@ -41,13 +42,13 @@ void	raycast(t_cubed *game)
 		index++;
 	}
 }
-
+#include <stdio.h>
 void	draw_wall(t_cubed *game, int index)
 {
 	//ft_printf("in draw wall");
-	int	height;
-	int	start;
-	int	end;
+	long long	height;
+	long long	start;
+	long long	end;
 
 	height = (int)(HEIGHT / game->player.perp);
 	start = -height / 2 + HEIGHT / 2;
@@ -58,14 +59,15 @@ void	draw_wall(t_cubed *game, int index)
 		end = HEIGHT - 1;
 	else if( end < 0)
 		end = -end;
-	ft_printf("%d %d\n", start, end);
-	while(start <= end)
+	//printf("\r%lld %lld", start, end);
+	//printf(" %f", game->player.perp);
+	while(start <= end && start < HEIGHT)
 	{
-		ft_printf("%d\n",game->player.side);
+		//ft_printf("%d, start: %i, index: %i\n",game->player.side, start, index);
 		if (game->player.side == 0)
 		{
 			set_pix(game->mlx.img,index,start++,GREEN);
-			ft_printf("drawn green line");
+			//ft_printf("drawn green line");
 		}
 		else
 			set_pix(game->mlx.img,index,start++,YELLOW);
@@ -80,13 +82,14 @@ void	draw_floor(t_cubed *game)
 	int colour;
 	
 	colour = RED;
+	y = 0;
 	while(y <= HEIGHT)
 	{
 		if (y >= HEIGHT / 2)
 			colour = BLUE;
+		x = 0;
 		while(x <= WIDTH)
 			set_pix(game->mlx.img,x++,y,colour);
-		x = 0;
 		y++;
 	}
 }

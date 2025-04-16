@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:50:05 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/15 20:23:08 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/16 14:31:12 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cubed.h"
@@ -60,12 +60,10 @@ void	draw_line(t_image *img, int *start, int *end, int colour)
 
 static void	perp(t_player *player)
 {
-	if (player->side)
+	if (player->side == 1)
 		player->perp = player->sidedist[Y] - player->deltadist[Y];
 	else
 		player->perp = player->sidedist[X] - player->deltadist[X];
-	if (player->perp <= 0)
-		player->perp = 0;
 }
 
 //dda algo shoutout lodev
@@ -103,8 +101,8 @@ void	check_wall_hit(t_player *player)
 	int	hit;
 
 	hit = 0;
-	map[X] = (int)player->player[X];
-	map[Y] = (int)player->player[Y];
+	map[X] = player->player[X];
+	map[Y] = player->player[Y];
 	while (hit == 0)
 	{
 		if (player->sidedist[X] < player->sidedist[Y])
@@ -119,8 +117,8 @@ void	check_wall_hit(t_player *player)
 			map[Y] += player->step[Y];
 			player->side = 1;
 		}
-		if (map[Y] < 0 || map[X] < 0 ||
-			player->game->map[map[Y]][map[X]] == 1)
+		if (map[Y] < 0 || map[X] < 0 
+			|| player->game->map[map[Y]][map[X]] == 1)
 			hit = 1;
 	}
 	perp(player);

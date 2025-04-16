@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/15 20:42:31 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/16 14:29:22 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	loop_hook(t_cubed *game)
 		//		set_pix(game->mlx.img, x + 150, y + 150, get_pix(&game->textures[0].img, x, y));
 		//	}
 		//}
-		//draw_floor(game);
+		draw_floor(game);
 		raycast(game);
 		mlx_put_image_to_window(game->mlx.data, game->mlx.win,
 			game->mlx.img->data, 0, 0);

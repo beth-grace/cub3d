@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/15 16:59:11 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/16 14:19:16 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
 {
 	t_cubed	game;
 	t_image	img_hack;
-
-	ft_bzero(&game, sizeof(game));
+	
+	//ft_memset(&game, 42, sizeof(game));
 	if (argc != 2)
 	{
 		puterr("Usage: ./cub3d <.cub file>\n");

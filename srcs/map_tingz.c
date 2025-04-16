@@ -6,13 +6,13 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/15 17:09:08 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/16 14:28:26 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-void char_check(t_cubed *game, char *line)
+void char_check(t_cubed *game, char *line, int line_num)
 {
 	int index;
 //checks for player orientation and valid chars
@@ -23,21 +23,29 @@ void char_check(t_cubed *game, char *line)
 		{
 			game->orient = 1;
 			game->player_c++;
+			game->player.player[X] = index;
+			game->player.player[Y] = line_num;
 		}
 		else if (line[index] == 'E')
 		{
 			game->orient = 2;
 			game->player_c++;
+			game->player.player[X] = index;
+			game->player.player[Y] = line_num;
 		}
 		else if (line[index] == 'S')
 		{
 			game->orient = 3;
 			game->player_c++;
+			game->player.player[X] = index;
+			game->player.player[Y] = line_num;
 		}
 		else if (line[index] == 'W')
 		{
 			game->orient = 4;
 			game->player_c++;
+			game->player.player[X] = index;
+			game->player.player[Y] = line_num;
 		}
 		index++;
 	}
@@ -81,7 +89,7 @@ void	map_size(t_cubed *game, char *file)
 			game->width = ft_strlen(line) - 1;
 		else if (game->width < (int)ft_strlen(line) - 1)
 			game->width = ft_strlen(line) -1;
-		char_check(game,line);
+		char_check(game,line, game->height);
 		game->height++;
 		free(line);
 		line = get_next_line(fd);
