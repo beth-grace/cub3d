@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:52 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/09 13:19:43 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:32:27 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include <stdbool.h>
 # include <mlx.h>
-
-# define WIDTH 800
-# define HEIGHT 600
 
 typedef struct s_image
 {

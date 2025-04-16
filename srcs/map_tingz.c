@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/16 14:28:26 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:30:50 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,29 @@ void char_check(t_cubed *game, char *line, int line_num)
 		{
 			game->orient = 1;
 			game->player_c++;
-			game->player.player[X] = index;
-			game->player.player[Y] = line_num;
+			game->player.player[X] = index + 0.5;
+			game->player.player[Y] = line_num + 0.5;
 		}
 		else if (line[index] == 'E')
 		{
 			game->orient = 2;
 			game->player_c++;
-			game->player.player[X] = index;
-			game->player.player[Y] = line_num;
+			game->player.player[X] = index + 0.5;
+			game->player.player[Y] = line_num + 0.5;
 		}
 		else if (line[index] == 'S')
 		{
 			game->orient = 3;
 			game->player_c++;
-			game->player.player[X] = index;
-			game->player.player[Y] = line_num;
+			game->player.player[X] = index + 0.5;
+			game->player.player[Y] = line_num + 0.5;
 		}
 		else if (line[index] == 'W')
 		{
 			game->orient = 4;
 			game->player_c++;
-			game->player.player[X] = index;
-			game->player.player[Y] = line_num;
+			game->player.player[X] = index + 0.5;
+			game->player.player[Y] = line_num + 0.5;
 		}
 		index++;
 	}

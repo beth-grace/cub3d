@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/16 15:26:09 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/16 15:50:12 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,11 @@ int	loop_hook(t_cubed *game)
 	if (game->rerender == 1)
 	{
 		// !!! update image here !!!
-	//	map_gen(game);
-		//for (int y = 0; y < game->textures[0].height; y++) {
-		//	for (int x = 0; x < game->textures[0].width; x++) {
-		//		set_pix(game->mlx.img, x + 150, y + 150, get_pix(&game->textures[0].img, x, y));
-		//	}
-		//}
 		draw_floor(game);
 		raycast(game);
+	    map_gen(game);
 		mlx_put_image_to_window(game->mlx.data, game->mlx.win,
 			game->mlx.img->data, 0, 0);
-		double angle = M_PI * 2.0 / 360.0;
-		rotate(game->player.look_orient, angle);
-		rotate(game->player.plane, angle);
-		printf("x: %f, y: %f\n", game->player.look_orient[X], game->player.look_orient[Y]);
-		//sleep(1);
 	}
 	return (0);
 }
@@ -88,6 +78,21 @@ int	key_hook(int keycode, t_cubed *game)
 	if (keycode == ESCAPE)
 	{
 		exit_cleanly(game);
+	} else if (keycode == KEY_A)
+	{
+		double angle = -M_PI * 2.0 / 180.0;
+		rotate(game->player.look_orient, angle);
+		rotate(game->player.plane, angle);
+	}
+	else if (keycode == KEY_D)
+	{
+		double angle = M_PI * 2.0 / 180.0;
+		rotate(game->player.look_orient, angle);
+		rotate(game->player.plane, angle);
+	} else if (keycode == KEY_W)
+	{
+		game->player.player[X] += game->player.look_orient[X] * 0.2;
+		game->player.player[Y] += game->player.look_orient[Y] * 0.2;
 	}
 	return (0);
 }

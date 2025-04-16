@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:43 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/09 13:36:57 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:35:07 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	mlx_setup(t_cubed *game, t_image *img_hack)
 		return ;
 	}
 	mlx_loop_hook(game->mlx.data, loop_hook, game);
-	mlx_key_hook(game->mlx.win, key_hook, game);
 	mlx_mouse_hook(game->mlx.win, mouse_hook, game);
 	mlx_hook(game->mlx.win, 17, 1L << 17, exit_cleanly, game);
+	mlx_hook(game->mlx.win, 2, 1L << 0, key_hook, game);
 }
 

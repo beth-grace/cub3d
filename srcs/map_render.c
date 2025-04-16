@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:50:05 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/16 14:51:24 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:28:41 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cubed.h"
@@ -98,13 +98,14 @@ void calc_step(t_player *player)
 void	check_wall_hit(t_player *player)
 {
 	int	map[2];
-	int	hit;
+	int	i;
 
-	hit = 0;
 	map[X] = player->player[X];
 	map[Y] = player->player[Y];
-	while (hit == 0)
+	i = 0;
+	while (1)
 	{
+		i++;
 		if (player->sidedist[X] < player->sidedist[Y])
 		{
 			player->sidedist[X] += player->deltadist[X];
@@ -117,11 +118,20 @@ void	check_wall_hit(t_player *player)
 			map[Y] += player->step[Y];
 			player->side = 1;
 		}
-		if (map[Y] < 0 || map[X] < 0 
+		if ((map[Y] < 0 || map[X] < 0 
 			|| map[Y] >= player->game->height 
-			|| map[X] >= (int)ft_strlen(player->game->map[map[Y]])
-			|| player->game->map[map[Y]][map[X]] == 1)
-			hit = 1;
+			|| map[X] >= (int)ft_strlen(player->game->map[map[Y]])))
+		{
+			if (i <= 1000)
+				continue ;
+			else
+			{
+				player->perp = 10000000;
+				return ;
+			}
+		}
+		if (player->game->map[map[Y]][map[X]] == '1')
+			break ;
 	}
 	perp(player);
 }

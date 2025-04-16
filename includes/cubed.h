@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/16 14:16:16 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:31:59 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define KEY_D		0x64
 # define TILE_W		64
 # define TILE_H		64
-# define HEIGHT		600
-# define WIDTH		800
+# define HEIGHT		1200
+# define WIDTH		1600
 
 # define BLACK 0x00000000
 # define BLUE  0x000000FF
