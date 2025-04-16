@@ -10,6 +10,7 @@ SRC= $(addprefix srcs/,\
 	maze_solver.c\
 	map_render.c\
 	raycast.c\
+	utils.c\
 )
 OBJ= $(patsubst %.c,%.o,$(SRC))
 DEP= $(patsubst %.c,%.d,$(SRC))

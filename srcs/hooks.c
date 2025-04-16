@@ -6,13 +6,15 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/16 14:29:22 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/16 15:26:09 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <mlx.h>
 #include "libft.h"
+#include <math.h>
 
 #include "mlx_setup.h"
 #include "cubed.h"
@@ -48,6 +50,15 @@ int	exit_cleanly(t_cubed *game)
 	return (0);
 }
 
+static inline void rotate(double vec[2], double rad)
+{
+	double old_x;
+
+	old_x = vec[X];
+	vec[X] = vec[X] * cos(rad) - vec[Y] * sin(rad);
+	vec[Y] = old_x * sin(rad) + vec[Y] * cos(rad);
+}
+
 int	loop_hook(t_cubed *game)
 {
 	if (game->rerender == 1)
@@ -63,6 +74,11 @@ int	loop_hook(t_cubed *game)
 		raycast(game);
 		mlx_put_image_to_window(game->mlx.data, game->mlx.win,
 			game->mlx.img->data, 0, 0);
+		double angle = M_PI * 2.0 / 360.0;
+		rotate(game->player.look_orient, angle);
+		rotate(game->player.plane, angle);
+		printf("x: %f, y: %f\n", game->player.look_orient[X], game->player.look_orient[Y]);
+		//sleep(1);
 	}
 	return (0);
 }
