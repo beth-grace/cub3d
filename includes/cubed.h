@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/16 16:31:59 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/17 15:06:18 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define Y 1
 # define TARGET_FPS 1500
 # define PRINT_FPS 1
+# define MAX_RAY_CHECKS 1000
 //# define DBL_MIN 2.2250738585072014e-308
 //# define DBL_MAX 1.7976931348623157e+308
 # define M_PI 3.14159265358979323846
@@ -83,6 +84,8 @@ typedef struct	s_player
 	double	deltadist[2];
 	double	sidedist[2];
 	double	rotation;
+	double	rot_speed;
+	double	mov_speed;
 	double	look_orient[2];
 	double	perp;
 	int		step[2];
@@ -160,7 +163,8 @@ void	draw_floor(t_cubed *game);
 
 //hooks
 int	loop_hook(t_cubed *game);
-int	key_hook(int keycode, t_cubed *game);
+int	keydown_hook(int keycode, t_cubed *game);
+int	keyup_hook(int keycode, t_cubed *game);
 int	mouse_hook(int mousecode, int x, int y, t_cubed *game);
 int	exit_cleanly(t_cubed *game);
 

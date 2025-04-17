@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/16 15:50:12 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/17 15:44:27 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static inline void rotate(double vec[2], double rad)
 {
 	double old_x;
 
+	if (rad == 0.0)
+		return ;
 	old_x = vec[X];
 	vec[X] = vec[X] * cos(rad) - vec[Y] * sin(rad);
 	vec[Y] = old_x * sin(rad) + vec[Y] * cos(rad);
@@ -61,6 +63,13 @@ static inline void rotate(double vec[2], double rad)
 
 int	loop_hook(t_cubed *game)
 {
+	double angle;
+
+	angle = M_PI * 2.0 / 360.0 * game->player.rot_speed;
+	rotate(game->player.look_orient, angle);
+	rotate(game->player.plane, angle);
+	game->player.player[X] += game->player.look_orient[X] * game->player.mov_speed;
+	game->player.player[Y] += game->player.look_orient[Y] * game->player.mov_speed;
 	if (game->rerender == 1)
 	{
 		// !!! update image here !!!
@@ -73,35 +82,30 @@ int	loop_hook(t_cubed *game)
 	return (0);
 }
 
-int	key_hook(int keycode, t_cubed *game)
+int	keydown_hook(int keycode, t_cubed *game)
 {
 	if (keycode == ESCAPE)
-	{
 		exit_cleanly(game);
-	} else if (keycode == KEY_A)
-	{
-		double angle = -M_PI * 2.0 / 180.0;
-		rotate(game->player.look_orient, angle);
-		rotate(game->player.plane, angle);
-	}
+	else if (keycode == KEY_A)
+		game->player.rot_speed -= 5.0;
 	else if (keycode == KEY_D)
-	{
-		double angle = M_PI * 2.0 / 180.0;
-		rotate(game->player.look_orient, angle);
-		rotate(game->player.plane, angle);
-	} else if (keycode == KEY_W)
-	{
-		game->player.player[X] += game->player.look_orient[X] * 0.2;
-		game->player.player[Y] += game->player.look_orient[Y] * 0.2;
-	}
+		game->player.rot_speed += 5.0;
+	else if (keycode == KEY_W)
+		game->player.mov_speed += 0.2;
+	else if (keycode == KEY_S)
+		game->player.mov_speed -= 0.2;
 	return (0);
 }
 
-int	mouse_hook(int mousecode, int x, int y, t_cubed *game)
+int	keyup_hook(int keycode, t_cubed *game)
 {
-	(void)x;
-	(void)y;
-	(void)game;
-	(void)mousecode;
+	if (keycode == KEY_A)
+		game->player.rot_speed += 5.0;
+	else if (keycode == KEY_D)
+		game->player.rot_speed -= 5.0;
+	else if (keycode == KEY_W)
+		game->player.mov_speed -= 0.2;
+	else if (keycode == KEY_S)
+		game->player.mov_speed += 0.2;
 	return (0);
 }

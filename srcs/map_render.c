@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:50:05 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/16 17:22:10 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/17 13:58:29 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cubed.h"
@@ -122,11 +122,11 @@ void	check_wall_hit(t_player *player)
 			|| map[Y] >= player->game->height 
 			|| map[X] >= (int)ft_strlen(player->game->map[map[Y]])))
 		{
-			if (i <= 1000)
+			if (i <= MAX_RAY_CHECKS)
 				continue ;
 			else
 			{
-				player->perp = 10000000;
+				player->perp = NAN;
 				return ;
 			}
 		}
