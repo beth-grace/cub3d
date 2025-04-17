@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/17 15:06:18 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/17 16:29:18 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define KEY_S		0x73
 # define KEY_A		0x61
 # define KEY_D		0x64
+# define KEY_LARROW	65361
+# define KEY_RARROW	65363
 # define TILE_W		64
 # define TILE_H		64
 # define HEIGHT		1200
@@ -85,7 +87,7 @@ typedef struct	s_player
 	double	sidedist[2];
 	double	rotation;
 	double	rot_speed;
-	double	mov_speed;
+	double	mov_speed[2];
 	double	look_orient[2];
 	double	perp;
 	int		step[2];

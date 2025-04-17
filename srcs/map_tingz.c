@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/16 16:30:50 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/17 18:28:06 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,31 +139,31 @@ void	set_orient(t_cubed *game)
 	if(game->orient == 1 || game->orient == 3)
 	{
 		game->player.plane[Y] = 0.0;
-		game->player.look_orient[X] = 0.0;
+		game->player.look_orient[X] = 0.01 / 1.0001;
 		if (game->orient == 1)
 		{
 			game->player.plane[X] = 0.66;
-			game->player.look_orient[Y] = -1.0;
+			game->player.look_orient[Y] = -1.0 / 1.0001;
 		}
 		else if (game->orient == 3)
 		{
 			game->player.plane[X] = -0.66;
-			game->player.look_orient[Y] = 1.0;
+			game->player.look_orient[Y] = 1.0 / 1.0001;
 		}
 	}
 	else
 	{
 		game->player.plane[X] = 0.0;
-		game->player.look_orient[Y] = 0.0;
+		game->player.look_orient[Y] = 0.01;
 		if (game->orient == 2)
 		{
 			game->player.plane[Y] = 0.66;
-			game->player.look_orient[X] = 1.0;
+			game->player.look_orient[X] = 1.0 / 1.0001;
 		}
 		else if (game->orient == 4)
 		{
 			game->player.plane[Y] = -0.66;
-			game->player.look_orient[X] = -1.0;
+			game->player.look_orient[X] = -1.0 / 1.0001;
 		}
 	}
 }
