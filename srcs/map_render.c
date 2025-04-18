@@ -6,57 +6,10 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:50:05 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/17 18:13:07 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/18 21:02:33 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cubed.h"
-
-/*static t_line	set_line(int *start, int *end)
-{
-	t_line	line;
-
-	line.dx = abs(end[X] - start[X]);
-	line.dy = abs(end[Y] - start[Y]);
-
-	if (start[X] < end[X])
-		line.sx = 1;
-	else
-		line.sx = -1;
-	if (start[Y] < end[Y])
-		line.sy = 1;
-	else
-		line.sy = -1;
-	line.err = line.dx - line.dy;
-	return (line);
-}
-//ripped someones bresenham algo implementation
-//calculates best pixel to draw lines with
-void	draw_line(t_image *img, int *start, int *end, int colour)
-{
-	t_line	line;
-	int	x0;
-	int	y0;
-	int	e2;
-
-	x0 = start[X];
-	y0 = start[Y];
-	line = set_line(start, end);
-	while (x0 != end[X] || y0 != end[Y])
-	{
-		set_pix(img, x0, y0, colour);
-		e2 = 2 * line.err;
-		if  (e2 > -line.dy)
-		{
-			line.err -= line.dy;
-			x0 += line.sx;
-		}
-		if (e2 < line.dx)
-		{
-			line.err += line.dx;
-			y0 += line.sy;
-		}
-	}
-} */
 
 static void	perp(t_player *player)
 {
