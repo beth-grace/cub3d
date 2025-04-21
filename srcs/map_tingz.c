@@ -6,16 +6,15 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/17 18:28:06 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/21 23:56:14 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-void char_check(t_cubed *game, char *line, int line_num)
+void	char_check(t_cubed *game, char *line, int line_num)
 {
-	int index;
-//checks for player orientation and valid chars
+	int	index;
 	index = 0;
 	while (line[index])
 	{
@@ -33,28 +32,34 @@ void char_check(t_cubed *game, char *line, int line_num)
 			game->player.player[X] = index + 0.5;
 			game->player.player[Y] = line_num + 0.5;
 		}
-		else if (line[index] == 'S')
-		{
-			game->orient = 3;
-			game->player_c++;
-			game->player.player[X] = index + 0.5;
-			game->player.player[Y] = line_num + 0.5;
-		}
-		else if (line[index] == 'W')
-		{
-			game->orient = 4;
-			game->player_c++;
-			game->player.player[X] = index + 0.5;
-			game->player.player[Y] = line_num + 0.5;
-		}
+		else if (line[index] == 'S' || line[index] == 'W')
+			char_check2(game, line, line_num, index);
 		index++;
+	}
+}
+
+static void	char_check2(t_cubed *game, char *line, int line_num, int index)
+{
+	if (line[index] == 'S')
+	{
+		game->orient = 3;
+		game->player_c++;
+		game->player.player[X] = index + 0.5;
+		game->player.player[Y] = line_num + 0.5;
+	}
+	else if (line[index] == 'W')
+	{
+		game->orient = 4;
+		game->player_c++;
+		game->player.player[X] = index + 0.5;
+		game->player.player[Y] = line_num + 0.5;
 	}
 }
 
 void	map_char_check(t_cubed *game)
 {
-	int index;
-//will pick up invalid chars or too many players
+	int	index;
+
 	if (game->player_c != 1)
 	{
 		ft_printf("Error!:\nI Don't Like It >:((\n");
@@ -74,7 +79,7 @@ void	map_size(t_cubed *game, char *file)
 {
 	char	*line;
 	int		fd;
-// checks and store map height and width
+
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
@@ -96,7 +101,6 @@ void	map_size(t_cubed *game, char *file)
 	}
 	close(fd);
 }
-
 
 void	read_map(t_cubed *game, char *file)
 {
@@ -131,39 +135,4 @@ void	read_map(t_cubed *game, char *file)
 		index++;
 	}
 	close(fd);
-}
-
-//for North only atm
-void	set_orient(t_cubed *game)
-{
-	if(game->orient == 1 || game->orient == 3)
-	{
-		game->player.plane[Y] = 0.0;
-		game->player.look_orient[X] = 0.01 / 1.0001;
-		if (game->orient == 1)
-		{
-			game->player.plane[X] = 0.66;
-			game->player.look_orient[Y] = -1.0 / 1.0001;
-		}
-		else if (game->orient == 3)
-		{
-			game->player.plane[X] = -0.66;
-			game->player.look_orient[Y] = 1.0 / 1.0001;
-		}
-	}
-	else
-	{
-		game->player.plane[X] = 0.0;
-		game->player.look_orient[Y] = 0.01;
-		if (game->orient == 2)
-		{
-			game->player.plane[Y] = 0.66;
-			game->player.look_orient[X] = 1.0 / 1.0001;
-		}
-		else if (game->orient == 4)
-		{
-			game->player.plane[Y] = -0.66;
-			game->player.look_orient[X] = -1.0 / 1.0001;
-		}
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:43 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/17 15:12:33 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/21 23:58:54 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ void	mlx_setup(t_cubed *game, t_image *img_hack)
 	mlx_hook(game->mlx.win, 2, 1L << 0, keydown_hook, game);
 	mlx_hook(game->mlx.win, 3, 1L << 1, keyup_hook, game);
 }
-

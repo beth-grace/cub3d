@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:50:05 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/18 21:02:33 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/21 23:56:29 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cubed.h"
@@ -19,8 +19,7 @@ static void	perp(t_player *player)
 		player->perp = player->sidedist[X] - player->deltadist[X];
 }
 
-//dda algo shoutout lodev
-void calc_step(t_player *player)
+void	calc_step(t_player *player)
 {
 	double	diff[2];
 
@@ -71,9 +70,8 @@ void	check_wall_hit(t_player *player)
 			map[Y] += player->step[Y];
 			player->side = 1;
 		}
-		if ((map[Y] < 0 || map[X] < 0 
-			|| map[Y] >= player->game->height 
-			|| map[X] >= (int)ft_strlen(player->game->map[map[Y]])))
+		if ((map[Y] < 0 || map[X] < 0 || map[Y] >= player->game->height
+				|| map[X] >= (int)ft_strlen(player->game->map[map[Y]])))
 		{
 			if (i <= MAX_RAY_CHECKS)
 				continue ;

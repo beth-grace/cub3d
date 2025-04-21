@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/17 18:16:54 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/21 23:44:45 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "mlx_setup.h"
 #include "cubed.h"
 
-static void init_game(t_cubed *game)
+static void	init_game(t_cubed *game)
 {
 //	game->mlx = mlx_init();
 	game->width = 0;
@@ -24,11 +24,11 @@ static void init_game(t_cubed *game)
 	game->player_c = 0;
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_cubed	game;
 	t_image	img_hack;
-	
+
 	ft_memset(&game, 0, sizeof(game));
 	if (argc != 2)
 	{
@@ -39,9 +39,9 @@ int main(int argc, char *argv[])
 	ft_printf("init game\n");
 	mlx_setup(&game, &img_hack);
 	ft_printf("mlx setup\n");
-	map_size(&game,argv[1]);
+	map_size(&game, argv[1]);
 	ft_printf("got map size\n");
-	read_map(&game,argv[1]);
+	read_map(&game, argv[1]);
 	ft_printf("read_map\n");
 	map_char_check(&game);
 	ft_printf("mapcheck\n");

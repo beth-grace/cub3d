@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/* ********************************************************************* */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
@@ -6,13 +6,13 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:18:50 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/17 15:21:33 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/21 23:58:06 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-static t_dir get_wall_direction(t_player *player)
+static	t_dir get_wall_direction(t_player *player)
 {
 	if (player->side == 1)
 	{
@@ -120,5 +120,39 @@ void	draw_floor(t_cubed *game)
 		while(x <= WIDTH)
 			set_pix(game->mlx.img,x++,y,colour);
 		y++;
+	}
+}
+
+void	set_orient(t_cubed *game)
+{
+	if(game->orient == 1 || game->orient == 3)
+	{
+		game->player.plane[Y] = 0.0;
+		game->player.look_orient[X] = 0.01 / 1.0001;
+		if (game->orient == 1)
+		{
+			game->player.plane[X] = 0.66;
+			game->player.look_orient[Y] = -1.0 / 1.0001;
+		}
+		else if (game->orient == 3)
+		{
+			game->player.plane[X] = -0.66;
+			game->player.look_orient[Y] = 1.0 / 1.0001;
+		}
+	}
+	else
+	{
+		game->player.plane[X] = 0.0;
+		game->player.look_orient[Y] = 0.01;
+		if (game->orient == 2)
+		{
+			game->player.plane[Y] = 0.66;
+			game->player.look_orient[X] = 1.0 / 1.0001;
+		}
+		else if (game->orient == 4)
+		{
+			game->player.plane[Y] = -0.66;
+			game->player.look_orient[X] = -1.0 / 1.0001;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/07 14:50:37 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/21 23:57:58 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	find_player(t_cubed *game)
 	int		out;
 	int		pos_y;
 	int		pos_x;
-//finds player position
+
 	pos_y = 0;
 	new_map = copy_map(game);
 	while ( pos_y <= game->height)
