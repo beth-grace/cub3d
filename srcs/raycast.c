@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:18:50 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/17 15:21:33 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/21 23:31:57 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,26 @@ static t_dir get_wall_direction(t_player *player)
 void	raycast(t_cubed *game)
 {
 	int			index;
-	t_player	*player;
 
 	index = 0;
-	player = &game->player;
-	player->game = game;
 	while (index < WIDTH)
 	{
-		player->camera_x = 2 * index / (double)WIDTH -1;
-		player->raydir[X] = player->look_orient[X]
-			+ (player->plane[X] * player->camera_x);
-		player->raydir[Y] = player->look_orient[Y]
-			+ (player->plane[Y] * player->camera_x);
-		if (player->raydir[X] == 0)
-			player->deltadist[X] = 0;
+		game->player.camera_x = 2 * index / (double)WIDTH -1;
+		game->player.raydir[X] = game->player.look_orient[X]
+			+ (game->player.plane[X] * game->player.camera_x);
+		game->player.raydir[Y] = game->player.look_orient[Y]
+			+ (game->player.plane[Y] * game->player.camera_x);
+		if (game->player.raydir[X] == 0)
+			game->player.deltadist[X] = 0;
 		else
-			player->deltadist[X] = fabs(1.0 / player->raydir[X]);
-		if (player->raydir[Y] == 0)
-			player->deltadist[Y] = 0;
+			game->player.deltadist[X] = fabs(1.0 / game->player.raydir[X]);
+		if (game->player.raydir[Y] == 0)
+			game->player.deltadist[Y] = 0;
 		else
-			player->deltadist[Y] = fabs(1.0 / player->raydir[Y]);
-		calc_step(player);
-		check_wall_hit(player);
-		if (!isnan(player->perp))
+			game->player.deltadist[Y] = fabs(1.0 / game->player.raydir[Y]);
+		calc_step(&game->player);
+		check_wall_hit(&game->player);
+		if (!isnan(game->player.perp))
 			draw_wall(game,index);
 		index++;
 	}

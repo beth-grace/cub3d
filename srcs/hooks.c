@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/21 23:25:04 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/21 23:32:33 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	loop_hook(t_cubed *game)
 	game->player.player[Y] += game->player.look_orient[X] * mov_dir[X] * MOV_SPEED;
 	if (game->rerender == 1)
 	{
-		// !!! update image here !!!
 		draw_floor(game);
 		raycast(game);
 	    map_gen(game);
