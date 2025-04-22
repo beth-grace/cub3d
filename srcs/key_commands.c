@@ -6,14 +6,14 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/18 21:03:35 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/22 15:59:25 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "cubed.h"
 
-void draw_square(t_cubed *game, int x, int y, int colour)
+void	draw_square(t_cubed *game, int x, int y, int colour)
 {
 	int	i;
 	int	j;
@@ -51,16 +51,22 @@ void	map_gen(t_cubed *game)
 				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
 			else if (game->map[h][w] == 'E')
 				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
-			else if (game->map[h][w] == 'S')
-				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
-			else if (game->map[h][w] == 'W')
-				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
-			else if (game->map[h][w] != ' ')
-				draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0xFF0000);
+			else
+				map_gen2(game, h, w);
 			w++;
 		}
 		h++;
 	}
+}
+
+static void	map_gen2(t_cubed *game, int h, int w)
+{
+	if (game->map[h][w] == 'S')
+		draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
+	else if (game->map[h][w] == 'W')
+		draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0x00FF00);
+	else if (game->map[h][w] != ' ')
+		draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0xFF0000);
 }
 
 void	char_error(t_cubed *game)

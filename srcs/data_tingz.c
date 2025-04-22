@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:41:44 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/09 13:28:44 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/22 16:20:28 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	data_check(const t_cubed *game)
 	}
 }
 
-bool is_data_line(const char *line)
+bool	is_data_line(const char *line)
 {
 	if (line == NULL)
 		return (false);
@@ -70,19 +70,15 @@ static void	add_texture(t_cubed *game, char *line, t_dir dir)
 		i++;
 	path_ptr = line + i;
 	tex = &(game->textures[dir]);
-	tex->img.data = mlx_xpm_file_to_image(
-		game->mlx.data,
-		path_ptr,
-		&tex->width,
-		&tex->height
-	);
+	tex->img.data = mlx_xpm_file_to_image(game->mlx.data, path_ptr,
+			&tex->width, &tex->height);
 	if (tex->img.data == NULL)
 	{
 		ft_printf("Bad texture: '%s'\n", path_ptr);
-		return;
+		return ;
 	}
 	tex->img.addr = mlx_get_data_addr(tex->img.data, &tex->img.bits_per_pixel,
-		&tex->img.line_length, &tex->img.endian);
+			&tex->img.line_length, &tex->img.endian);
 }
 
 void	add_data(t_cubed *game, char *line)

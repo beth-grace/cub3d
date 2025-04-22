@@ -6,14 +6,14 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:33:36 by cadlard           #+#    #+#             */
-/*   Updated: 2025/03/17 18:51:43 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/22 16:08:37 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <libft.h>
 
-void puterr(const char *err)
+void	puterr(const char *err)
 {
 	write(2, err, ft_strlen(err));
 }

@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/21 23:57:58 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/22 15:50:04 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 char	**copy_map(t_cubed *game)
 {
-//might be useless, can delete.
-	char **new_map;
+	char	**new_map;
 	int		i;
-//create a copy, so we arent changing the real map
+
 	i = -1;
 	new_map = malloc(sizeof(char *) * game->height);
 	while (++i < game->height)
@@ -25,8 +24,8 @@ char	**copy_map(t_cubed *game)
 	return (new_map);
 }
 
-int maze(t_cubed *game, char **new_map, int pos_y, int pos_x)
-{// check if its a valid map
+int	maze(t_cubed *game, char **new_map, int pos_y, int pos_x)
+{
 	if (pos_y < 0 || pos_x < 0)
 		return (1);
 	if (pos_y > game->height -1 || pos_x > game->width -1)
@@ -53,7 +52,7 @@ int	find_player(t_cubed *game)
 
 	pos_y = 0;
 	new_map = copy_map(game);
-	while ( pos_y <= game->height)
+	while (pos_y <= game->height)
 	{
 		pos_x = -1;
 		while (++pos_x <= game->width)
@@ -61,7 +60,7 @@ int	find_player(t_cubed *game)
 				|| game->map[pos_y][pos_x] == 'E'
 				|| game->map[pos_y][pos_x] == 'S'
 				|| game->map[pos_y][pos_x] == 'W')
-				break;
+				break ;
 		pos_y++;
 	}
 	out = maze(game, new_map, pos_y, pos_x);
@@ -76,7 +75,7 @@ int	check_cub(int argc, char **argv)
 {
 	int	index;
 // TODO: use argc
-(void)argc;
+	(void)argc;
 //checks if its a .cub file
 	index = 0;
 	while (argv[1][index] != '.')

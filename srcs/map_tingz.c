@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/21 23:56:14 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/22 15:54:12 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	char_check(t_cubed *game, char *line, int line_num)
 {
 	int	index;
+
 	index = 0;
 	while (line[index])
 	{
@@ -93,8 +94,8 @@ void	map_size(t_cubed *game, char *file)
 		if (game->width == 0)
 			game->width = ft_strlen(line) - 1;
 		else if (game->width < (int)ft_strlen(line) - 1)
-			game->width = ft_strlen(line) -1;
-		char_check(game,line, game->height);
+			game->width = ft_strlen(line) - 1;
+		char_check(game, line, game->height);
 		game->height++;
 		free(line);
 		line = get_next_line(fd);
@@ -107,12 +108,12 @@ void	read_map(t_cubed *game, char *file)
 	int		index;
 	int		fd;
 	char	*line;
-//reads map/file parseing
+
 	index = 0;
 	fd = open(file, O_RDONLY);
 	game->map = (char **)malloc((game->height + 1) * sizeof(char *));
 	if (game->map == NULL)
-		return; // TODO: L
+		return ;
 	while (index < game->height)
 	{
 		line = get_next_line(fd);
@@ -130,7 +131,7 @@ void	read_map(t_cubed *game, char *file)
 			free(line);
 			continue ;
 		}
-		else 
+		else
 			game->map[index] = line;
 		index++;
 	}

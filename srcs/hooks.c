@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/17 17:43:27 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/22 16:13:36 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 #include "mlx_setup.h"
 #include "cubed.h"
 
-/*
-these are only available on minilibx_linux for some reason?
-	mlx_loop_end(vars->mlx);
-	mlx_destroy_display(vars->mlx);
-*/
+	/*
+	these are only available on minilibx_linux for some reason?
+		mlx_loop_end(vars->mlx);
+		mlx_destroy_display(vars->mlx);
+	*/
 int	exit_cleanly(t_cubed *game)
 {
 	int	i;
@@ -50,9 +50,9 @@ int	exit_cleanly(t_cubed *game)
 	return (0);
 }
 
-static inline void rotate(double vec[2], double rad)
+static inline void	rotate(double vec[2], double rad)
 {
-	double old_x;
+	double	old_x;
 
 	old_x = vec[X];
 	vec[X] = vec[X] * cos(rad) - vec[Y] * sin(rad);
@@ -66,16 +66,19 @@ int	loop_hook(t_cubed *game)
 	angle = M_PI * 2.0 / 360.0 * game->player.rot_speed;
 	rotate(game->player.look_orient, angle);
 	rotate(game->player.plane, angle);
-	game->player.player[X] += game->player.look_orient[X] * game->player.mov_speed[Y];
-	game->player.player[Y] += game->player.look_orient[Y] * game->player.mov_speed[Y];
-	game->player.player[X] += -game->player.look_orient[Y] * game->player.mov_speed[X];
-	game->player.player[Y] += game->player.look_orient[X] * game->player.mov_speed[X];
+	game->player.player[X] += game->player.look_orient[X]
+		* game->player.mov_speed[Y];
+	game->player.player[Y] += game->player.look_orient[Y]
+		* game->player.mov_speed[Y];
+	game->player.player[X] += -game->player.look_orient[Y]
+		* game->player.mov_speed[X];
+	game->player.player[Y] += game->player.look_orient[X]
+		* game->player.mov_speed[X];
 	if (game->rerender == 1)
 	{
-		// !!! update image here !!!
 		draw_floor(game);
 		raycast(game);
-	    map_gen(game);
+		map_gen(game);
 		mlx_put_image_to_window(game->mlx.data, game->mlx.win,
 			game->mlx.img->data, 0, 0);
 	}

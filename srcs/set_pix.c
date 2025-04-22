@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:17:56 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/17 15:21:01 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/22 16:15:59 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static inline int	byte_offset(t_image *img, int x, int y)
 {
- 	return (y * img->line_length + x * (img->bits_per_pixel / 8));
+	return (y * img->line_length + x * (img->bits_per_pixel / 8));
 }
 
 int	get_pix(t_image *img, int x, int y)
@@ -37,10 +37,8 @@ void	set_pix(t_image *img, int x, int y, int colour)
 	dst = img->addr + byte_offset(img, x, y);
 	*(unsigned int *)dst = colour;
 }
-
-
-
-/*static inline int	argb(unsigned char a, unsigned char r, unsigned char g, unsigned char b)
+/*static inline int	argb(unsigned char a,
+	unsigned char r, unsigned char g, unsigned char b)
 {
 	return (a << 24 | r << 16 | g << 8 | b);
 }
