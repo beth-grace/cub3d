@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 21:06:56 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/21 23:16:17 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/22 15:24:40 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	rad_to_deg(int n)
 	return ((n * 180) / M_PI);
 }
 
-void vec2_normalise(double vec[2])
+void	vec2_normalise(double vec[2])
 {
 	double	mag;
 
@@ -31,4 +31,10 @@ void vec2_normalise(double vec[2])
 		return ;
 	vec[X] /= mag;
 	vec[Y] /= mag;
+}
+
+void	vec2_trunc_copy(int dst[2], const double src[2])
+{
+	dst[X] = (int)src[X];
+	dst[Y] = (int)src[Y];
 }
