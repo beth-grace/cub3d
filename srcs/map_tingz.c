@@ -6,11 +6,29 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/22 15:54:12 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/22 17:13:51 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
+
+static void	char_check2(t_cubed *game, char *line, int line_num, int index)
+{
+	if (line[index] == 'S')
+	{
+		game->orient = 3;
+		game->player_c++;
+		game->player.player[X] = index + 0.5;
+		game->player.player[Y] = line_num + 0.5;
+	}
+	else if (line[index] == 'W')
+	{
+		game->orient = 4;
+		game->player_c++;
+		game->player.player[X] = index + 0.5;
+		game->player.player[Y] = line_num + 0.5;
+	}
+}
 
 void	char_check(t_cubed *game, char *line, int line_num)
 {
@@ -36,24 +54,6 @@ void	char_check(t_cubed *game, char *line, int line_num)
 		else if (line[index] == 'S' || line[index] == 'W')
 			char_check2(game, line, line_num, index);
 		index++;
-	}
-}
-
-static void	char_check2(t_cubed *game, char *line, int line_num, int index)
-{
-	if (line[index] == 'S')
-	{
-		game->orient = 3;
-		game->player_c++;
-		game->player.player[X] = index + 0.5;
-		game->player.player[Y] = line_num + 0.5;
-	}
-	else if (line[index] == 'W')
-	{
-		game->orient = 4;
-		game->player_c++;
-		game->player.player[X] = index + 0.5;
-		game->player.player[Y] = line_num + 0.5;
 	}
 }
 

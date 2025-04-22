@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/22 16:54:36 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/22 17:16:19 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int	keydown_hook(int keycode, t_cubed *game)
 	if (keycode == ESCAPE)
 		exit_cleanly(game);
 	else if (keycode == KEY_LARROW)
-		game->player.rot_speed -= 1.5;
+		game->player.rot_speed -= 5.0;
 	else if (keycode == KEY_RARROW)
-		game->player.rot_speed += 1.5;
+		game->player.rot_speed += 5.0;
 	else if (keycode == KEY_W)
 		game->player.mov_dir[Y] += 1.0;
 	else if (keycode == KEY_S)
@@ -109,9 +109,9 @@ int	keydown_hook(int keycode, t_cubed *game)
 int	keyup_hook(int keycode, t_cubed *game)
 {
 	if (keycode == KEY_LARROW)
-		game->player.rot_speed += 1.5;
+		game->player.rot_speed += 5.0;
 	else if (keycode == KEY_RARROW)
-		game->player.rot_speed -= 1.5;
+		game->player.rot_speed -= 5.0;
 	else if (keycode == KEY_W)
 		game->player.mov_dir[Y] -= 1.0;
 	else if (keycode == KEY_S)
