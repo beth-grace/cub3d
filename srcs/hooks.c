@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/22 16:13:36 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/22 16:54:36 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,21 @@ static inline void	rotate(double vec[2], double rad)
 
 int	loop_hook(t_cubed *game)
 {
-	double	angle;
+	t_player	*player;
+	double		angle;
+	double		mov_dir[2];
 
-	angle = M_PI * 2.0 / 360.0 * game->player.rot_speed;
-	rotate(game->player.look_orient, angle);
-	rotate(game->player.plane, angle);
-	game->player.player[X] += game->player.look_orient[X]
-		* game->player.mov_speed[Y];
-	game->player.player[Y] += game->player.look_orient[Y]
-		* game->player.mov_speed[Y];
-	game->player.player[X] += -game->player.look_orient[Y]
-		* game->player.mov_speed[X];
-	game->player.player[Y] += game->player.look_orient[X]
-		* game->player.mov_speed[X];
+	player = &game->player;
+	angle = M_PI * 2.0 / 360.0 * player->rot_speed;
+	rotate(player->look_orient, angle);
+	rotate(player->plane, angle);
+	mov_dir[X] = player->mov_dir[X];
+	mov_dir[Y] = player->mov_dir[Y];
+	vec2_normalise(mov_dir);
+	player->player[X] += player->look_orient[X] * mov_dir[Y] * MOV_SPEED;
+	player->player[Y] += player->look_orient[Y] * mov_dir[Y] * MOV_SPEED;
+	player->player[X] += -player->look_orient[Y] * mov_dir[X] * MOV_SPEED;
+	player->player[Y] += player->look_orient[X] * mov_dir[X] * MOV_SPEED;
 	if (game->rerender == 1)
 	{
 		draw_floor(game);
@@ -90,33 +92,33 @@ int	keydown_hook(int keycode, t_cubed *game)
 	if (keycode == ESCAPE)
 		exit_cleanly(game);
 	else if (keycode == KEY_LARROW)
-		game->player.rot_speed -= 5.0;
+		game->player.rot_speed -= 1.5;
 	else if (keycode == KEY_RARROW)
-		game->player.rot_speed += 5.0;
+		game->player.rot_speed += 1.5;
 	else if (keycode == KEY_W)
-		game->player.mov_speed[Y] += 0.05;
+		game->player.mov_dir[Y] += 1.0;
 	else if (keycode == KEY_S)
-		game->player.mov_speed[Y] -= 0.05;
+		game->player.mov_dir[Y] -= 1.0;
 	else if (keycode == KEY_A)
-		game->player.mov_speed[X] -= 0.05;
+		game->player.mov_dir[X] -= 1.0;
 	else if (keycode == KEY_D)
-		game->player.mov_speed[X] += 0.05;
+		game->player.mov_dir[X] += 1.0;
 	return (0);
 }
 
 int	keyup_hook(int keycode, t_cubed *game)
 {
 	if (keycode == KEY_LARROW)
-		game->player.rot_speed += 5.0;
+		game->player.rot_speed += 1.5;
 	else if (keycode == KEY_RARROW)
-		game->player.rot_speed -= 5.0;
+		game->player.rot_speed -= 1.5;
 	else if (keycode == KEY_W)
-		game->player.mov_speed[Y] -= 0.05;
+		game->player.mov_dir[Y] -= 1.0;
 	else if (keycode == KEY_S)
-		game->player.mov_speed[Y] += 0.05;
+		game->player.mov_dir[Y] += 1.0;
 	else if (keycode == KEY_A)
-		game->player.mov_speed[X] += 0.05;
+		game->player.mov_dir[X] += 1.0;
 	else if (keycode == KEY_D)
-		game->player.mov_speed[X] -= 0.05;
+		game->player.mov_dir[X] -= 1.0;
 	return (0);
 }

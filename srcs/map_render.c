@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:50:05 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/21 23:56:29 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/22 16:55:55 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cubed.h"
@@ -19,6 +19,23 @@ static void	perp(t_player *player)
 		player->perp = player->sidedist[X] - player->deltadist[X];
 }
 
+static void	dda_stuff_idk(t_player *player, int map[2])
+{
+	if (player->sidedist[X] < player->sidedist[Y])
+	{
+		player->sidedist[X] += player->deltadist[X];
+		map[X] += player->step[X];
+		player->side = 0;
+	}
+	else
+	{
+		player->sidedist[Y] += player->deltadist[Y];
+		map[Y] += player->step[Y];
+		player->side = 1;
+	}
+}
+
+//dda algo shoutout lodev
 void	calc_step(t_player *player)
 {
 	double	diff[2];
@@ -52,26 +69,15 @@ void	check_wall_hit(t_player *player)
 	int	map[2];
 	int	i;
 
-	map[X] = player->player[X];
-	map[Y] = player->player[Y];
+	vec2_trunc_copy(map, player->player);
 	i = 0;
 	while (1)
 	{
 		i++;
-		if (player->sidedist[X] < player->sidedist[Y])
-		{
-			player->sidedist[X] += player->deltadist[X];
-			map[X] += player->step[X];
-			player->side = 0;
-		}
-		else
-		{
-			player->sidedist[Y] += player->deltadist[Y];
-			map[Y] += player->step[Y];
-			player->side = 1;
-		}
-		if ((map[Y] < 0 || map[X] < 0 || map[Y] >= player->game->height
-				|| map[X] >= (int)ft_strlen(player->game->map[map[Y]])))
+		dda_stuff_idk(player, map);
+		if (map[X] < 0 || map[Y] < 0
+			|| map[Y] >= player->game->height
+			|| map[X] >= (int)ft_strlen(player->game->map[map[Y]]))
 		{
 			if (i <= MAX_RAY_CHECKS)
 				continue ;

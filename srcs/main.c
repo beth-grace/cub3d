@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/22 16:27:00 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/22 16:55:19 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 static void	init_game(t_cubed *game)
 {
+	game->player.game = game;
 	game->width = 0;
 	game->height = 0;
 	game->player_c = 0;
