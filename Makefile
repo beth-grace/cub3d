@@ -11,6 +11,7 @@ SRC= $(addprefix srcs/,\
 	map_render.c\
 	raycast.c\
 	utils.c\
+	texture.c\
 )
 OBJ= $(patsubst %.c,%.o,$(SRC))
 DEP= $(patsubst %.c,%.d,$(SRC))

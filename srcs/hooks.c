@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/21 23:32:33 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/22 14:23:48 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	loop_hook(t_cubed *game)
 	if (game->rerender == 1)
 	{
 		draw_floor(game);
+		printf("x: %f; y: %f; raydir_x: %f; raydir_y: %f\r", game->player.player[X], game->player.player[Y], game->player.raydir[X], game->player.raydir[Y]);
 		raycast(game);
 	    map_gen(game);
 		mlx_put_image_to_window(game->mlx.data, game->mlx.win,
@@ -90,9 +91,9 @@ int	keydown_hook(int keycode, t_cubed *game)
 	if (keycode == ESCAPE)
 		exit_cleanly(game);
 	else if (keycode == KEY_LARROW)
-		game->player.rot_speed -= 5.0;
+		game->player.rot_speed -= 1.5;
 	else if (keycode == KEY_RARROW)
-		game->player.rot_speed += 5.0;
+		game->player.rot_speed += 1.5;
 	else if (keycode == KEY_W)
 		game->player.mov_dir[Y] += 1.0;
 	else if (keycode == KEY_S)
@@ -107,9 +108,9 @@ int	keydown_hook(int keycode, t_cubed *game)
 int	keyup_hook(int keycode, t_cubed *game)
 {
 	if (keycode == KEY_LARROW)
-		game->player.rot_speed += 5.0;
+		game->player.rot_speed += 1.5;
 	else if (keycode == KEY_RARROW)
-		game->player.rot_speed -= 5.0;
+		game->player.rot_speed -= 1.5;
 	else if (keycode == KEY_W)
 		game->player.mov_dir[Y] -= 1.0;
 	else if (keycode == KEY_S)

@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/21 23:25:38 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/22 15:12:42 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ typedef enum e_dir
 	WE = 2,
 	EA = 3
 }	t_dir;
+
+typedef struct s_draw_ctx
+{
+	int start;
+	int	end;
+	int	height;
+}	t_draw_ctx;
 
 typedef struct s_texture
 {
@@ -186,4 +193,9 @@ void	perpendicular(t_player *player);
 int	deg_to_rad(int n);
 int	rad_to_deg(int n);
 void vec2_normalise(double vec[2]);
+
+//texture
+t_texture	*get_texture(t_cubed *game);
+void	draw_texture(t_cubed *game, int index, t_draw_ctx ctx);
+
 #endif
