@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 21:06:56 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/22 16:56:33 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 16:25:32 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,11 @@ void	vec2_trunc_copy(int dst[2], const double src[2])
 {
 	dst[X] = (int)src[X];
 	dst[Y] = (int)src[Y];
+}
+
+void	free_message(char *line, char *str)
+{
+	free(line);
+	ft_printf("%s\n",str);
+	exit(2);
 }

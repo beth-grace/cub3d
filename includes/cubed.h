@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 01:54:05 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/23 16:30:17 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@
 # define TARGET_FPS 1500
 # define PRINT_FPS 1
 # define MAX_RAY_CHECKS 1000
-//# define DBL_MIN 2.2250738585072014e-308
-//# define DBL_MAX 1.7976931348623157e+308
 # define M_PI 3.14159265358979323846
 
 typedef enum e_dir
@@ -73,7 +71,7 @@ typedef struct s_rex
 	t_image	img;
 	int		height;
 	int		width;
-}	t_texture;
+}	t_rex;
 
 struct	s_cubed;
 typedef struct s_player
@@ -157,6 +155,7 @@ int		exit_cleanly(t_cubed *game);
 //set_pix.c
 int		get_pix(t_image *img, int x, int y);
 void	set_pix(t_image *img, int x, int y, int colour);
+int		argb(unsigned char a, unsigned char g, unsigned char b);
 
 //mlx_setup
 void	mlx_setup(t_cubed *game, t_image *img);
@@ -170,14 +169,17 @@ int		deg_to_rad(int n);
 int		rad_to_deg(int n);
 void	vec2_normalise(double vec[2]);
 void	vec2_trunc_copy(int dst[2], const double src[2]);
+void	free_message(char *line, char *str);
 
 //texture
 t_rex	*get_texture(t_cubed *game);
 void	draw_texture(t_cubed *game, int index, t_draw_ctx ctx);
 
 //colour
-void	colour_parser(t_cubed *game);
-void	set_flooor(t_cubed *game);
-void	set_ceiling(t_cubed *game);
+int		rgb_to_hex(char *line);
+
+//colour2
+void	set_floor(t_cubed *game, char *line);
+void	set_ceiling(t_cubed *game, char *line);
 
 #endif

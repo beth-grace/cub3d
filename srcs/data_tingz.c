@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:41:44 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/22 16:20:28 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/23 16:26:44 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	add_texture(t_cubed *game, char *line, t_dir dir)
 {
 	int			i;
 	char		*path_ptr;
-	t_texture	*tex;
+	t_rex	*tex;
 
 	i = 0;
 	while (line[i] && line[i] != ' ')
@@ -91,4 +91,8 @@ void	add_data(t_cubed *game, char *line)
 		add_texture(game, line, EA);
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 		add_texture(game, line, WE);
+	else if (ft_strncmp(line, "F ", 2) == 0)
+		set_floor(game, line);
+	else if (ft_strncmp(line, "C ", 2) == 0)
+		set_ceiling(game, line);
 }

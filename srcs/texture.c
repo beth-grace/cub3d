@@ -6,7 +6,7 @@
 /*   By: cadlard <cadlard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:35:24 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/23 00:45:00 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/23 16:27:21 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_texture(t_cubed *game, int index, t_draw_ctx ctx)
 	int			tex_y;
 	double		step;
 	double		tex_pos;
-	t_tex		*tex;
+	t_rex		*tex;
 
 	tex = get_texture(game);
 	tex_x = get_tex_x(game, tex);

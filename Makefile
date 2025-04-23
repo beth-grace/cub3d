@@ -12,6 +12,8 @@ SRC= $(addprefix srcs/,\
 	raycast.c\
 	utils.c\
 	texture.c\
+	colour.c\
+	colour2.c\
 )
 OBJ= $(patsubst %.c,%.o,$(SRC))
 DEP= $(patsubst %.c,%.d,$(SRC))

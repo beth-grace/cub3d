@@ -6,29 +6,92 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 01:49:15 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 01:54:33 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/23 16:31:32 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-void	colour_parser(t_cubed *game)
+static int	check_colour_codes(char *s)
 {
+	int	index;
+	int	len;
 
-
-
+	index = 1;
+	len = ft_strlen(s);
+	if (!s || !len || !ft_isdigit((int)s[++index]))
+		return (0);
+	while (s[++index])
+	{
+		while (s[index] && (s[index] == ' ' || ft_isdigit((int)s[index])))
+			index++;
+		if (s[index] == ',' && s[index + 1])
+		{
+			while (s[++index] && s[index] == ' ' && s[index + 1])
+				continue ;
+			if (s[index + 1] && (!ft_isdigit((int)s[index + 1]) && s[index] != ' '))
+				return (0);
+		}
+	}
+	if (!ft_isdigit(s[len - 1]))
+		return (0);
+	return (1);
 }
 
-void	set_ceiling(t_cubed *game)
+static int	colour_parser(char *line)
 {
+	int	index;
+	int	commas;
 
-
+	index = 1;
+	commas = 0;
+	while (line[++index])
+	{
+		if (!ft_strchr("0123456789 , ", line[index]))
+			free_message(line, "Colour codes are invalid!");
+		if (line[index] == ',')
+			commas++;
+	}
+	if (commas != 2)
+		free_message(line, "Colour codes are invalid!");
+	if (!check_colour_codes(line))
+		free_message(line, "Colour codes are invalid!");
+	return (1);
 }
 
-
-void	set_floor(t_cubed *game)
+static void	init_array(int *rgb, int size)
 {
+	int	index;
 
+	index = 0;
+	while (index < size)
+		rgb[index++] = 0;
+}
 
+int	rgb_to_hex(char *line)
+{
+	int	index;
+	int	j;
+	int	rgb[3];
 
+	if (!colour_parser(line))
+		free_message(line, "Color codes are invalid!");
+	index = 0;
+	j = 0;
+	init_array(rgb, 3);
+	while (line[index] && j < 3)
+	{
+		while (line[index] && (!ft_isdigit(line[index])))
+			index++;
+		while (ft_isdigit(line[index]))
+		{
+			rgb[j] = rgb[j] * 10;
+			rgb[j] = rgb[j] + (line[index] - '0');
+			index++;
+		}
+		if (rgb[j] > 255 || rgb[j] < 0)
+			free_message(line, "Color codes are invalid!");
+		j++;
+	}
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
