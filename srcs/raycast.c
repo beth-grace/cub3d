@@ -1,4 +1,4 @@
-/* ********************************************************************* */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:18:50 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/22 16:56:20 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 12:43:11 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	draw_floor(t_cubed *game)
 
 void	set_orient(t_cubed *game)
 {
-	if(game->orient == 1 || game->orient == 3)
+	if (game->orient == 1 || game->orient == 3)
 	{
 		game->player.plane[Y] = 0.0;
 		game->player.look_orient[X] = 0.01 / 1.0001;
@@ -95,7 +95,7 @@ void	set_orient(t_cubed *game)
 	else
 	{
 		game->player.plane[X] = 0.0;
-		game->player.look_orient[Y] = 0.01;
+		game->player.look_orient[Y] = 0.01 / 1.0001;
 		if (game->orient == 2)
 		{
 			game->player.plane[Y] = 0.66;

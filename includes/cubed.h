@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/22 15:24:15 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 12:33:09 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ int	deg_to_rad(int n);
 int	rad_to_deg(int n);
 void	vec2_normalise(double vec[2]);
 void	vec2_trunc_copy(int dst[2], const double src[2]);
+int	parse_line(t_cubed *game, char *line, int *map_index);
 
 //texture
 t_texture	*get_texture(t_cubed *game);
