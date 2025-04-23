@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/22 17:13:19 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 00:18:10 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	map_gen2(t_cubed *game, int h, int w)
 	else if (game->map[h][w] != ' ')
 		draw_square(game, w * MAP_ZOOM, h * MAP_ZOOM, 0xFF0000);
 }
-
 
 void	map_gen(t_cubed *game)
 {

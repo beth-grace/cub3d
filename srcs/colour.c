@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   colour.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 18:32:48 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/23 00:41:37 by beefie           ###   ########.fr       */
+/*   Created: 2025/04/23 01:49:15 by beefie            #+#    #+#             */
+/*   Updated: 2025/04/23 01:54:33 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "cubed.h"
 
-void	puterr(const char *err);
+void	colour_parser(t_cubed *game)
+{
 
-#endif
+
+
+}
+
+void	set_ceiling(t_cubed *game)
+{
+
+
+}
+
+
+void	set_floor(t_cubed *game)
+{
+
+
+
+}

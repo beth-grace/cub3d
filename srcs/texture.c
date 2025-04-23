@@ -6,13 +6,13 @@
 /*   By: cadlard <cadlard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:35:24 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/22 15:16:04 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 00:45:00 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
-t_texture	*get_texture(t_cubed *game)
+t_rex	*get_texture(t_cubed *game)
 {
 	if (game->player.side == 1)
 	{
@@ -27,7 +27,7 @@ t_texture	*get_texture(t_cubed *game)
 		return (&game->textures[WE]);
 }
 
-int	get_tex_x(t_cubed *game, t_texture *tex)
+int	get_tex_x(t_cubed *game, t_rex *tex)
 {
 	t_player	*player;
 	double		wall_x;
@@ -54,7 +54,7 @@ void	draw_texture(t_cubed *game, int index, t_draw_ctx ctx)
 	int			tex_y;
 	double		step;
 	double		tex_pos;
-	t_texture	*tex;
+	t_tex		*tex;
 
 	tex = get_texture(game);
 	tex_x = get_tex_x(game, tex);

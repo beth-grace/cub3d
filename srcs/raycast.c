@@ -1,4 +1,4 @@
-/* ********************************************************************* */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:18:50 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/22 16:56:20 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 01:48:50 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ void	draw_floor(t_cubed *game)
 	int	y;
 	int	colour;
 
-	colour = 0x848484;
+	colour = game->fcolour;
 	y = 0;
 	while (y <= HEIGHT)
 	{
 		if (y >= HEIGHT / 2)
-			colour = 0x424242;
+			colour = game->ccolour;
 		x = 0;
 		while (x <= WIDTH)
 			set_pix(game->mlx.img, x++, y, colour);
@@ -75,9 +75,25 @@ void	draw_floor(t_cubed *game)
 	}
 }
 
+static void	set_orient2(t_cubed *game)
+{
+	game->player.plane[X] = 0.0;
+	game->player.look_orient[Y] = 0.01;
+	if (game->orient == 2)
+	{
+		game->player.plane[Y] = 0.66;
+		game->player.look_orient[X] = 1.0 / 1.0001;
+	}
+	else if (game->orient == 4)
+	{
+		game->player.plane[Y] = -0.66;
+		game->player.look_orient[X] = -1.0 / 1.0001;
+	}
+}
+
 void	set_orient(t_cubed *game)
 {
-	if(game->orient == 1 || game->orient == 3)
+	if (game->orient == 1 || game->orient == 3)
 	{
 		game->player.plane[Y] = 0.0;
 		game->player.look_orient[X] = 0.01 / 1.0001;
@@ -93,18 +109,5 @@ void	set_orient(t_cubed *game)
 		}
 	}
 	else
-	{
-		game->player.plane[X] = 0.0;
-		game->player.look_orient[Y] = 0.01;
-		if (game->orient == 2)
-		{
-			game->player.plane[Y] = 0.66;
-			game->player.look_orient[X] = 1.0 / 1.0001;
-		}
-		else if (game->orient == 4)
-		{
-			game->player.plane[Y] = -0.66;
-			game->player.look_orient[X] = -1.0 / 1.0001;
-		}
-	}
+		set_orient2(game);
 }

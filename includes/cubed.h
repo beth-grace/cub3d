@@ -1,4 +1,4 @@
-/************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cubed.h                                            :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/22 15:24:15 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 01:54:05 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <mlx.h>
 # include <stdbool.h>
 # include <math.h>
-
 
 # define MOV_SPEED	0.05
 # define ESCAPE		0xff1b
@@ -64,27 +63,20 @@ typedef enum e_dir
 
 typedef struct s_draw_ctx
 {
-	int start;
+	int	start;
 	int	end;
 	int	height;
 }	t_draw_ctx;
 
-typedef struct s_texture
+typedef struct s_rex
 {
 	t_image	img;
 	int		height;
 	int		width;
 }	t_texture;
 
-typedef struct s_map
-{
-	int		pos_x;
-	int		pos_y;
-}	t_map;
-
-
-struct s_cubed;
-typedef struct	s_player
+struct	s_cubed;
+typedef struct s_player
 {
 	double	player[2];
 	double	plane[2];
@@ -100,7 +92,6 @@ typedef struct	s_player
 	double	perp;
 	int		step[2];
 	int		side;
-	t_map	*map;
 }	t_player;
 
 typedef struct s_cubed
@@ -113,30 +104,15 @@ typedef struct s_cubed
 	int			xlocation;
 	int			ylocation;
 	int			orient;
+	int			fcolour;
+	int			ccolour;
 	char		**map;
 	void		*walls;
 	t_mlx		mlx;
 	bool		rerender;
 	t_player	player;
-	t_texture	textures[4];
+	t_rex		textures[4];
 }	t_cubed;
-
-/*typedef struct s_vec2
-{
-	double	x;
-	double	y;
-}	t_vec2;*/
-
-//Brehensen's line
-/*typedef struct s_line
-{
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-}	t_line;*/
-
 
 //key_commands
 int		keycheck(int key_code, t_cubed *game);
@@ -168,15 +144,15 @@ void	check_wall_hit(t_player *player);
 
 //raycast
 void	raycast(t_cubed *game);
-void	draw_wall(t_cubed *game,int index);
+void	draw_wall(t_cubed *game, int index);
 void	draw_floor(t_cubed *game);
 
 //hooks
-int	loop_hook(t_cubed *game);
-int	keydown_hook(int keycode, t_cubed *game);
-int	keyup_hook(int keycode, t_cubed *game);
-int	mouse_hook(int mousecode, int x, int y, t_cubed *game);
-int	exit_cleanly(t_cubed *game);
+int		loop_hook(t_cubed *game);
+int		keydown_hook(int keycode, t_cubed *game);
+int		keyup_hook(int keycode, t_cubed *game);
+int		mouse_hook(int mousecode, int x, int y, t_cubed *game);
+int		exit_cleanly(t_cubed *game);
 
 //set_pix.c
 int		get_pix(t_image *img, int x, int y);
@@ -186,17 +162,22 @@ void	set_pix(t_image *img, int x, int y, int colour);
 void	mlx_setup(t_cubed *game, t_image *img);
 
 //map_render
-void	draw_line(t_image *img,int *start, int *end,int colour);
+void	draw_line(t_image *img, int *start, int *end, int colour);
 void	perpendicular(t_player *player);
 
 //utils
-int	deg_to_rad(int n);
-int	rad_to_deg(int n);
+int		deg_to_rad(int n);
+int		rad_to_deg(int n);
 void	vec2_normalise(double vec[2]);
 void	vec2_trunc_copy(int dst[2], const double src[2]);
 
 //texture
-t_texture	*get_texture(t_cubed *game);
+t_rex	*get_texture(t_cubed *game);
 void	draw_texture(t_cubed *game, int index, t_draw_ctx ctx);
+
+//colour
+void	colour_parser(t_cubed *game);
+void	set_flooor(t_cubed *game);
+void	set_ceiling(t_cubed *game);
 
 #endif

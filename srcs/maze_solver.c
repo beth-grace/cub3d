@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/22 15:50:04 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/23 00:16:51 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ int	find_player(t_cubed *game)
 int	check_cub(int argc, char **argv)
 {
 	int	index;
-// TODO: use argc
+
 	(void)argc;
-//checks if its a .cub file
 	index = 0;
 	while (argv[1][index] != '.')
 		index++;
