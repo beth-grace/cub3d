@@ -6,13 +6,10 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/23 14:30:58 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 00:41:11 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-
-#include "error.h"
 #include "mlx_setup.h"
 #include "cubed.h"
 
@@ -35,12 +32,9 @@ int	main(int argc, char *argv[])
 	t_cubed	game;
 	t_image	img_hack;
 
-	ft_memset(&game, 0, sizeof(game));
-	if (argc != 2)
-	{
-		puterr("Usage: ./cub3d <.cub file>\n");
+	if (check_cub(argc, argv) == 1)
 		return (1);
-	}
+	ft_memset(&game, 0, sizeof(game));
 	init_game(&game);
 	ft_printf("init game\n");
 	mlx_setup(&game, &img_hack);
@@ -55,6 +49,11 @@ int	main(int argc, char *argv[])
 	ft_printf("datacheck\n");
 	set_orient(&game);
 	ft_printf("set orient\n");
+	if (find_path(&game) == 0)
+	{
+		ft_printf("Error: Map is not solvable");
+		exit_cleanly(&game, 2);
+	}
 	mlx_loop(game.mlx.data);
 	ft_printf("after mlx\n");
 	return (0);

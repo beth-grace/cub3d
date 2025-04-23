@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 00:16:51 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 00:37:46 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,33 @@ char	**copy_map(t_cubed *game)
 	return (new_map);
 }
 
+int	find_path(t_cubed *game)
+{
+	char	**newmap;
+	int		out;
+	int		index;
+
+	index = game->height - 1;
+	newmap = copy_map(game);
+	out = maze(game, newmap, game->ylocation, game->xlocation);
+	while (index >= 0)
+		free(newmap[index--]);
+	free(newmap);
+	return (out);
+}
+
 int	maze(t_cubed *game, char **new_map, int pos_y, int pos_x)
 {
 	if (pos_y < 0 || pos_x < 0)
-		return (1);
+		return (0);
 	if (pos_y > game->height -1 || pos_x > game->width -1)
-		return (1);
+		return (0);
 	if (new_map[pos_y][pos_x] == '1')
-		return (0);
-	if (new_map[pos_y][pos_x] == 'A')
-		return (0);
-	if (new_map[pos_y][pos_x] == ' ')
 		return (1);
+	if (new_map[pos_y][pos_x] == 'A')
+		return (1);
+	if (new_map[pos_y][pos_x] == ' ')
+		return (0);
 	new_map[pos_y][pos_x] = 'A';
 	return (maze(game, new_map, pos_y + 1, pos_x)
 		|| maze(game, new_map, pos_y - 1, pos_x)
@@ -75,12 +90,19 @@ int	check_cub(int argc, char **argv)
 {
 	int	index;
 
-	(void)argc;
 	index = 0;
-	while (argv[1][index] != '.')
+	if (argc != 2)
+	{
+		ft_printf("Invalid file type!\n");
+		return (1);
+	}
+	while (argv[1][index] != '.' && argv[1][index] != '\0')
 		index++;
-	if ((argv[2][index + 1] == 'c') && (argv[2][index + 2] == 'u')
-		&& (argv[2][index + 3] == 'b') && (argv[2][index + 4] == ' '))
+	ft_printf("from dot: %s\n", argv[1] + index);
+	if ((argv[1][index + 1] == 'c') && (argv[1][index + 2] == 'u')
+		&& (argv[1][index + 3] == 'b') && (argv[1][index + 4] == '\0'))
 		return (0);
-	return (1);
+	else
+		ft_printf("Invalid file type!\n");
+	return (0);
 }

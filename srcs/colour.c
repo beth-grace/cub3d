@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 01:49:15 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 17:22:15 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/23 23:11:34 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,20 @@ static int	check_colour_codes(char *s)
 	len = ft_strlen(s);
 	if (!s || !len || !ft_isdigit((int)s[++index]))
 		return (0);
+	ft_printf("not first one\n");
 	while (s[++index])
 	{
-		while (s[index] && (s[index] == ' ' || ft_isdigit((int)s[index])))
+		while (s[index] && (s[index] == ' ' || ft_isdigit(s[index])))
 			index++;
 		if (s[index] == ',' && s[index + 1])
 		{
 			while (s[++index] && s[index] == ' ' && s[index + 1])
 				continue ;
-			if (s[index + 1] && (!ft_isdigit((int)s[index + 1]) && s[index] != ' '))
+			if (s[index + 1] && (!ft_isdigit(s[index]) && s[index] != ' '))
 				return (0);
 		}
 	}
+	ft_printf("not number 2\n");
 	if (!ft_isdigit(s[len - 1]))
 		return (0);
 	return (1);
@@ -48,14 +50,14 @@ static int	colour_parser(char *line, t_cubed *game)
 	while (line[++index])
 	{
 		if (!ft_strchr("0123456789 , ", line[index]))
-			free_message(line, "Colour codes are invalid!", game);
+			free_message(line, "Colour codes are invalid!1\n", game);
 		if (line[index] == ',')
 			commas++;
 	}
 	if (commas != 2)
-		free_message(line, "Colour codes are invalid!", game);
+		free_message(line, "Colour codes are invalid!2\n", game);
 	if (!check_colour_codes(line))
-		free_message(line, "Colour codes are invalid!", game);
+		free_message(line, "Colour codes are invalid!3\n", game);
 	return (1);
 }
 
@@ -75,7 +77,7 @@ int	rgb_to_hex(char *line, t_cubed *game)
 	int	rgb[3];
 
 	if (!colour_parser(line, game))
-		free_message(line, "Color codes are invalid!", game);
+		free_message(line, "Color codes are invalid!4\n", game);
 	index = 0;
 	j = 0;
 	init_array(rgb, 3);
@@ -90,7 +92,7 @@ int	rgb_to_hex(char *line, t_cubed *game)
 			index++;
 		}
 		if (rgb[j] > 255 || rgb[j] < 0)
-			free_message(line, "Color codes are invalid!", game);
+			free_message(line, "Color codes are invalid!5\n", game);
 		j++;
 	}
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);

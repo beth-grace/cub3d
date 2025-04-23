@@ -6,15 +6,9 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/23 14:37:44 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 22:04:38 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <mlx.h>
-#include "libft.h"
-#include <math.h>
 
 #include "mlx_setup.h"
 #include "cubed.h"

@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 14:41:46 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 23:48:18 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	char_check2(t_cubed *game, char *line, int line_num, int index)
 		game->player_c++;
 		game->player.player[X] = index + 0.5;
 		game->player.player[Y] = line_num + 0.5;
+		game->xlocation = line[index];
 	}
 	else if (line[index] == 'W')
 	{
@@ -27,6 +28,7 @@ static void	char_check2(t_cubed *game, char *line, int line_num, int index)
 		game->player_c++;
 		game->player.player[X] = index + 0.5;
 		game->player.player[Y] = line_num + 0.5;
+		game->xlocation = line[index];
 	}
 }
 
@@ -43,6 +45,7 @@ void	char_check(t_cubed *game, char *line, int line_num)
 			game->player_c++;
 			game->player.player[X] = index + 0.5;
 			game->player.player[Y] = line_num + 0.5;
+			game->xlocation = line[index];
 		}
 		else if (line[index] == 'E')
 		{
@@ -50,6 +53,7 @@ void	char_check(t_cubed *game, char *line, int line_num)
 			game->player_c++;
 			game->player.player[X] = index + 0.5;
 			game->player.player[Y] = line_num + 0.5;
+			game->xlocation = line[index];
 		}
 		else if (line[index] == 'S' || line[index] == 'W')
 			char_check2(game, line, line_num, index);
@@ -63,6 +67,11 @@ void	map_char_check(t_cubed *game)
 	{
 		ft_printf("Error!:\nI Don't Like It >:((\n");
 		ft_printf("Bad amount of players!: %i\n", game->player_c);
+		exit_cleanly(game, 1);
+	}
+	else if ((!game->f_isset) || (!game->c_isset))
+	{
+		ft_printf("Colour input error!");
 		exit_cleanly(game, 1);
 	}
 }
@@ -87,6 +96,8 @@ void	map_size(t_cubed *game, char *file)
 		else if (game->width < (int)ft_strlen(line) - 1)
 			game->width = ft_strlen(line) - 1;
 		char_check(game, line, game->height);
+		if (game->xlocation)
+			game->ylocation = game->height;
 		game->height++;
 		free(line);
 		line = get_next_line(fd);

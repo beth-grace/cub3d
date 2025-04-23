@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 17:23:06 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 00:42:34 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,20 @@ typedef struct s_rex
 struct	s_cubed;
 typedef struct s_player
 {
-	double	player[2];
-	double	plane[2];
+	double			player[2];
+	double			plane[2];
 	struct s_cubed	*game;
-	double	camera_x;
-	double	raydir[2];
-	double	deltadist[2];
-	double	sidedist[2];
-	double	rotation;
-	double	rot_speed;
-	double	mov_dir[2];
-	double	look_orient[2];
-	double	perp;
-	int		step[2];
-	int		side;
+	double			camera_x;
+	double			raydir[2];
+	double			deltadist[2];
+	double			sidedist[2];
+	double			rotation;
+	double			rot_speed;
+	double			mov_dir[2];
+	double			look_orient[2];
+	double			perp;
+	int				step[2];
+	int				side;
 }	t_player;
 
 typedef struct s_cubed
@@ -104,8 +104,11 @@ typedef struct s_cubed
 	int			ylocation;
 	int			orient;
 	int			fcolour;
+	bool		f_isset;
+	bool		c_isset;
 	int			ccolour;
 	char		**map;
+	char		**newmap;
 	void		*walls;
 	t_mlx		mlx;
 	bool		rerender;
@@ -123,6 +126,7 @@ void	char_error(t_cubed *game);
 char	**copy_map(t_cubed *game);
 int		maze(t_cubed *game, char **new_map, int pos_y, int pos_x);
 int		find_player(t_cubed *game);
+int		check_cub(int argc, char **argv);
 
 //data_tingz
 void	data_check(t_cubed *game);
@@ -184,6 +188,8 @@ int		rgb_to_hex(char *line, t_cubed *game);
 //colour2
 void	set_floor(t_cubed *game, char *line);
 void	set_ceiling(t_cubed *game, char *line);
+char	**copy_map(t_cubed *game);
+int		find_path(t_cubed *game);
 
 //error
 void	puterr(const char *err);

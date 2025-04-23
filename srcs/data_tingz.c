@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:41:44 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/23 16:59:32 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 00:40:49 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	add_texture(t_cubed *game, char *line, t_dir dir)
 {
 	int			i;
 	char		*path_ptr;
-	t_rex	*tex;
+	t_rex		*tex;
 
 	tex = &(game->textures[dir]);
 	if (tex->valid)
