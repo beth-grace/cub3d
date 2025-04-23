@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:54:43 by cadlard           #+#    #+#             */
-/*   Updated: 2024/05/27 15:47:39 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 13:03:45 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 # endif
 
 /*
+ * public members:
  * void		**arr -> an indexable arr of void pointers
+ * 
+ * private members; can read values but do not change them
  * size_t	capacity ->	current capacity of array, if len > capacity then
  * 						capacity is doubled
  * size_t	len -> current amount of elements stored in arr, use for
@@ -27,9 +30,7 @@
  */
 typedef struct s_arrlst
 {
-	/* public members */
 	void	**arr;
-	/* private members; can read values but do not change them */
 	size_t	capacity;
 	size_t	len;
 }			t_arrlst;

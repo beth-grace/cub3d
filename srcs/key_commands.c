@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 12:43:57 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 14:39:10 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void	char_error(t_cubed *game)
 	while (game->h >= 0)
 		free(game->map[game->h--]);
 	free(game->map);
-	exit(0);
+	exit_cleanly(game, 0);
 }

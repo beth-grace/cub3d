@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 12:33:09 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 14:37:34 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_texture
 	t_image	img;
 	int		height;
 	int		width;
+	bool	valid;
 }	t_texture;
 
 typedef struct s_map
@@ -119,6 +120,7 @@ typedef struct s_cubed
 	bool		rerender;
 	t_player	player;
 	t_texture	textures[4];
+	bool		duplicate_tex;
 }	t_cubed;
 
 /*typedef struct s_vec2
@@ -149,10 +151,10 @@ int		maze(t_cubed *game, char **new_map, int pos_y, int pos_x);
 int		find_player(t_cubed *game);
 
 //data_tingz
-void	data_check(const t_cubed *game);
+void	data_check(t_cubed *game);
 bool	is_data_line(const char *line);
 void	add_data(t_cubed *game, char *line);
-void	strip_newline(char *str);
+void	strip_whitespace(char *str);
 
 //map_tingz
 void	char_check(t_cubed *game, char *line, int line_num);
@@ -176,7 +178,7 @@ int	loop_hook(t_cubed *game);
 int	keydown_hook(int keycode, t_cubed *game);
 int	keyup_hook(int keycode, t_cubed *game);
 int	mouse_hook(int mousecode, int x, int y, t_cubed *game);
-int	exit_cleanly(t_cubed *game);
+int	exit_cleanly(t_cubed *game, int code);
 
 //set_pix.c
 int		get_pix(t_image *img, int x, int y);
@@ -192,9 +194,10 @@ void	perpendicular(t_player *player);
 //utils
 int	deg_to_rad(int n);
 int	rad_to_deg(int n);
+int	parse_line(t_cubed *game, char *line, int *map_index);
 void	vec2_normalise(double vec[2]);
 void	vec2_trunc_copy(int dst[2], const double src[2]);
-int	parse_line(t_cubed *game, char *line, int *map_index);
+void	skip_whitespace(const char *str, int *i);
 
 //texture
 t_texture	*get_texture(t_cubed *game);

@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 12:33:22 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 14:41:46 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,11 @@ void	char_check(t_cubed *game, char *line, int line_num)
 
 void	map_char_check(t_cubed *game)
 {
-	int	index;
-
 	if (game->player_c != 1)
 	{
 		ft_printf("Error!:\nI Don't Like It >:((\n");
 		ft_printf("Bad amount of players!: %i\n", game->player_c);
-		index = 0;
-		while (index < game->height)
-		{
-			free(game->map[index]);
-			index++;
-		}
-		free(game->map);
-		exit(1);
+		exit_cleanly(game, 1);
 	}
 }
 
