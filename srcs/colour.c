@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 01:49:15 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 16:31:32 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/23 17:22:15 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_colour_codes(char *s)
 	return (1);
 }
 
-static int	colour_parser(char *line)
+static int	colour_parser(char *line, t_cubed *game)
 {
 	int	index;
 	int	commas;
@@ -48,14 +48,14 @@ static int	colour_parser(char *line)
 	while (line[++index])
 	{
 		if (!ft_strchr("0123456789 , ", line[index]))
-			free_message(line, "Colour codes are invalid!");
+			free_message(line, "Colour codes are invalid!", game);
 		if (line[index] == ',')
 			commas++;
 	}
 	if (commas != 2)
-		free_message(line, "Colour codes are invalid!");
+		free_message(line, "Colour codes are invalid!", game);
 	if (!check_colour_codes(line))
-		free_message(line, "Colour codes are invalid!");
+		free_message(line, "Colour codes are invalid!", game);
 	return (1);
 }
 
@@ -68,14 +68,14 @@ static void	init_array(int *rgb, int size)
 		rgb[index++] = 0;
 }
 
-int	rgb_to_hex(char *line)
+int	rgb_to_hex(char *line, t_cubed *game)
 {
 	int	index;
 	int	j;
 	int	rgb[3];
 
-	if (!colour_parser(line))
-		free_message(line, "Color codes are invalid!");
+	if (!colour_parser(line, game))
+		free_message(line, "Color codes are invalid!", game);
 	index = 0;
 	j = 0;
 	init_array(rgb, 3);
@@ -90,7 +90,7 @@ int	rgb_to_hex(char *line)
 			index++;
 		}
 		if (rgb[j] > 255 || rgb[j] < 0)
-			free_message(line, "Color codes are invalid!");
+			free_message(line, "Color codes are invalid!", game);
 		j++;
 	}
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);

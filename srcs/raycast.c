@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:18:50 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 01:48:50 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/23 17:32:37 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ void	draw_floor(t_cubed *game)
 	int	y;
 	int	colour;
 
-	colour = game->fcolour;
+	colour = game->ccolour;
 	y = 0;
 	while (y <= HEIGHT)
 	{
 		if (y >= HEIGHT / 2)
-			colour = game->ccolour;
+			colour = game->fcolour;
 		x = 0;
 		while (x <= WIDTH)
 			set_pix(game->mlx.img, x++, y, colour);

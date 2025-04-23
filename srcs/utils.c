@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 21:06:56 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 16:25:32 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/23 17:03:13 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,19 @@ void	vec2_trunc_copy(int dst[2], const double src[2])
 	dst[Y] = (int)src[Y];
 }
 
-void	free_message(char *line, char *str)
+// TODO: add check before adding line to map to make sure it is valid
+int	parse_line(t_cubed *game, char *line, int *map_index)
 {
-	free(line);
-	ft_printf("%s\n",str);
-	exit(2);
+	strip_whitespace(line);
+	if (is_data_line(line))
+	{
+		add_data(game, line);
+		free(line);
+	}
+	else
+	{
+		game->map[*map_index] = line;
+		(*map_index)++;
+	}
+	return (0);
 }

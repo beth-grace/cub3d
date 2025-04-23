@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/22 16:55:19 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 14:30:58 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 #include "error.h"
 #include "mlx_setup.h"
 #include "cubed.h"
+
+void	skip_whitespace(const char *str, int *i)
+{
+	while (ft_isspace(str[*i]))
+		(*i)++;
+}
 
 static void	init_game(t_cubed *game)
 {

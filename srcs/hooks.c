@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/22 17:16:19 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/23 14:37:44 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@
 		mlx_loop_end(vars->mlx);
 		mlx_destroy_display(vars->mlx);
 	*/
-int	exit_cleanly(t_cubed *game)
+int	exit_cleanly(t_cubed *game, int code)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		mlx_destroy_image(game->mlx.data, game->textures[i].img.data);
+		if (game->textures[i].valid)
+			mlx_destroy_image(game->mlx.data, game->textures[i].img.data);
 		i++;
 	}
 	i = 0;
@@ -46,8 +47,8 @@ int	exit_cleanly(t_cubed *game)
 	mlx_destroy_window(game->mlx.data, game->mlx.win);
 	mlx_destroy_display(game->mlx.data);
 	free(game->mlx.data);
-	exit(0);
-	return (0);
+	exit(code);
+	return (code);
 }
 
 static inline void	rotate(double vec[2], double rad)
@@ -90,7 +91,7 @@ int	loop_hook(t_cubed *game)
 int	keydown_hook(int keycode, t_cubed *game)
 {
 	if (keycode == ESCAPE)
-		exit_cleanly(game);
+		exit_cleanly(game, 0);
 	else if (keycode == KEY_LARROW)
 		game->player.rot_speed -= 5.0;
 	else if (keycode == KEY_RARROW)
