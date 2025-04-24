@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/24 22:16:57 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 23:07:43 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct s_cubed
 	t_player	player;
 	t_rex		textures[4];
 	bool		duplicate_tex;
+	bool		done_reading_map;
 }	t_cubed;
 
 //key_commands

@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/24 23:02:04 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 23:25:24 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,16 @@ void	map_char_check(t_cubed *game)
 {
 	if (game->player_c != 1)
 	{
-		ft_printf("Error!:\nI Don't Like It >:((\n");
-		ft_printf("Bad amount of players!: %i\n", game->player_c);
+		puterr("Error\nBad amount of players\n");
 		exit_cleanly(game, 1);
 	}
 	else if ((!game->f_isset) || (!game->c_isset))
 	{
-		ft_printf("Colour input error!");
+		puterr("Error\nColour input error!\n");
 		exit_cleanly(game, 1);
 	}
 }
-/*int	check_nl(t_cubed *game, char *line)
-{
-	int	index;
 
-	index = 0;
-	if (line[index]
-		*/
 void	map_size(t_cubed *game, char *file)
 {
 	char	*line;
@@ -118,6 +111,7 @@ void	read_map(t_cubed *game, char *file)
 	char	*line;
 
 	map_index = 0;
+	game->done_reading_map = false;
 	fd = open(file, O_RDONLY);
 	game->map = (char **)ft_calloc((game->height + 1), sizeof(char *));
 	if (game->map == NULL)
@@ -127,6 +121,12 @@ void	read_map(t_cubed *game, char *file)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
+		if (game->done_reading_map == true)
+		{
+			free(line);
+			puterr("Error\nInvalid line in map\n");
+			exit_cleanly(game, 2);
+		}
 		(void)parse_line(game, line, &map_index);
 	}
 	close(fd);

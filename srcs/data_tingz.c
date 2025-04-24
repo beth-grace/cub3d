@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:41:44 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/24 22:26:15 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 23:24:32 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	data_check(t_cubed *game)
 
 	if (game->duplicate_tex)
 	{
-		ft_printf("Error\nDuplicate texture\n");
+		puterr("Error\nDuplicate texture/color\n");
 		exit_cleanly(game, 2);
 	}
 	i = 0;
@@ -28,7 +28,7 @@ void	data_check(t_cubed *game)
 	{
 		if (game->textures[i].valid == false)
 		{
-			ft_printf("Error\nUnspecified/Invalid texture\n");
+			puterr("Error\nUnspecified/Invalid texture\n");
 			exit_cleanly(game, 2);
 		}
 		i++;
@@ -83,10 +83,7 @@ static void	add_texture(t_cubed *game, char *line, t_dir dir)
 	tex->img.data = mlx_xpm_file_to_image(game->mlx.data, path_ptr,
 			&tex->width, &tex->height);
 	if (tex->img.data == NULL)
-	{
-		ft_printf("Bad texture: '%s'\n", path_ptr);
 		return ;
-	}
 	tex->img.addr = mlx_get_data_addr(tex->img.data, &tex->img.bits_per_pixel,
 			&tex->img.line_length, &tex->img.endian);
 	tex->valid = true;

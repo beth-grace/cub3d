@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/24 23:01:53 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 23:22:25 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char *argv[])
 	set_orient(&game);
 	if (find_path(&game) == 0)
 	{
-		puterr("Error: Map is not solvable\n");
+		puterr("Error\nMap is not solvable\n");
 		exit_cleanly(&game, 2);
 	}
 	mlx_loop(game.mlx.data);

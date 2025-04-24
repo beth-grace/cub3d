@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/24 22:29:32 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 23:22:38 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	map_gen(t_cubed *game)
 
 void	char_error(t_cubed *game)
 {
-	ft_printf("Error!\nMap has invalid Syntax.\n");
+	puterr("Error\nMap has invalid Syntax.\n");
 	while (game->h >= 0)
 		free(game->map[game->h--]);
 	free(game->map);
