@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/24 14:38:01 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:32:54 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**copy_map(t_cubed *game)
 	int		i;
 
 	i = -1;
-	new_map = malloc(sizeof(char *) * game->height);
+	new_map = ft_calloc(game->height, sizeof(char *));
 	while (++i < game->height)
 		new_map[i] = ft_strdup(game->map[i]);
 	return (new_map);

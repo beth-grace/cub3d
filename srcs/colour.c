@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 01:49:15 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 23:11:34 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:19:38 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ static int	check_colour_codes(char *s)
 
 	index = 1;
 	len = ft_strlen(s);
-	if (!s || !len || !ft_isdigit((int)s[++index]))
+	if (!len || !ft_isdigit((int)s[++index]))
 		return (0);
 	ft_printf("not first one\n");
 	while (s[++index])
 	{
-		while (s[index] && (s[index] == ' ' || ft_isdigit(s[index])))
+		while (s[index] && (ft_isspace(s[index]) || ft_isdigit(s[index])))
 			index++;
 		if (s[index] == ',' && s[index + 1])
 		{
-			while (s[++index] && s[index] == ' ' && s[index + 1])
+			while (s[++index] && ft_isspace(s[index]) && s[index + 1])
 				continue ;
-			if (s[index + 1] && (!ft_isdigit(s[index]) && s[index] != ' '))
+			if (s[index + 1] && (!ft_isdigit(s[index]) && !ft_isspace(s[index])))
 				return (0);
 		}
 	}
@@ -49,7 +49,7 @@ static int	colour_parser(char *line, t_cubed *game)
 	commas = 0;
 	while (line[++index])
 	{
-		if (!ft_strchr("0123456789 , ", line[index]))
+		if (!ft_strchr("0123456789 , \t\r\v\f\n", line[index]))
 			free_message(line, "Colour codes are invalid!1\n", game);
 		if (line[index] == ',')
 			commas++;

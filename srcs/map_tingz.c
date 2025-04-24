@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/24 14:25:27 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:32:59 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	read_map(t_cubed *game, char *file)
 
 	map_index = 0;
 	fd = open(file, O_RDONLY);
-	game->map = (char **)malloc((game->height + 1) * sizeof(char *));
+	game->map = (char **)ft_calloc((game->height + 1), sizeof(char *));
 	if (game->map == NULL)
 		return ;
 	while (map_index < game->height)

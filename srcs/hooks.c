@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/23 22:04:38 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:30:00 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ int	exit_cleanly(t_cubed *game, int code)
 			mlx_destroy_image(game->mlx.data, game->textures[i].img.data);
 		i++;
 	}
+	mlx_destroy_image(game->mlx.data, game->mlx.img->data);
+	mlx_destroy_window(game->mlx.data, game->mlx.win);
+	mlx_destroy_display(game->mlx.data);
+	free(game->mlx.data);
+
+	if (game->map == NULL)
+		exit(code);
 	i = 0;
 	while (i < game->height)
 	{
@@ -37,10 +44,6 @@ int	exit_cleanly(t_cubed *game, int code)
 		i++;
 	}
 	free(game->map);
-	mlx_destroy_image(game->mlx.data, game->mlx.img->data);
-	mlx_destroy_window(game->mlx.data, game->mlx.win);
-	mlx_destroy_display(game->mlx.data);
-	free(game->mlx.data);
 	exit(code);
 	return (code);
 }

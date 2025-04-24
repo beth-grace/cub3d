@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/24 14:37:21 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:15:07 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	skip_whitespace(const char *str, int *i)
 
 static void	init_game(t_cubed *game)
 {
+	ft_memset(game, 0, sizeof(*game));
 	game->player.game = game;
 	game->width = 0;
 	game->height = 0;
@@ -34,7 +35,6 @@ int	main(int argc, char *argv[])
 
 	if (check_cub(argc, argv) == 1)
 		return (1);
-	ft_memset(&game, 0, sizeof(game));
 	init_game(&game);
 	ft_printf("init game\n");
 	mlx_setup(&game, &img_hack);
