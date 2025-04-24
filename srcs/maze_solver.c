@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:17:26 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/24 14:32:54 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 16:22:20 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,35 +57,6 @@ int	maze(t_cubed *game, char **new_map, int pos_y, int pos_x)
 		&& maze(game, new_map, pos_y - 1, pos_x)
 		&& maze(game, new_map, pos_y, pos_x + 1)
 		&& maze(game, new_map, pos_y, pos_x - 1));
-}
-
-
-int	find_player(t_cubed *game)
-{
-	char	**new_map;
-	int		out;
-	int		pos_y;
-	int		pos_x;
-
-	pos_y = 0;
-	new_map = copy_map(game);
-	while (pos_y <= game->height)
-	{
-		pos_x = -1;
-		while (++pos_x <= game->width)
-			if (game->map[pos_y][pos_x] == 'N'
-				|| game->map[pos_y][pos_x] == 'E'
-				|| game->map[pos_y][pos_x] == 'S'
-				|| game->map[pos_y][pos_x] == 'W')
-				break ;
-		pos_y++;
-	}
-	out = maze(game, new_map, pos_y, pos_x);
-	pos_y = game->height - 1;
-	while (pos_y >= 0)
-		free(new_map[pos_y - 1]);
-	free(new_map);
-	return (out);
 }
 
 int	check_cub(int argc, char **argv)
