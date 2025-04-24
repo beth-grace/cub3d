@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:20:32 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 17:00:59 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 22:29:32 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,20 @@ void	char_error(t_cubed *game)
 		free(game->map[game->h--]);
 	free(game->map);
 	exit_cleanly(game, 0);
+}
+
+bool	is_map_line(const char *line)
+{
+	int	i;
+
+	if (line[0] == '\0')
+		return (false);
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (ft_strchr(" NESW10", line[i]) == NULL)
+			return (false);
+		i++;
+	}
+	return (true);
 }

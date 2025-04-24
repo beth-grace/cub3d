@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:58:16 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/24 14:15:07 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 22:44:01 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,17 @@ int	main(int argc, char *argv[])
 	if (check_cub(argc, argv) == 1)
 		return (1);
 	init_game(&game);
-	ft_printf("init game\n");
 	mlx_setup(&game, &img_hack);
-	ft_printf("mlx setup\n");
 	map_size(&game, argv[1]);
-	ft_printf("got map size\n");
 	read_map(&game, argv[1]);
-	ft_printf("read_map\n");
 	map_char_check(&game);
-	ft_printf("mapcheck\n");
 	data_check(&game);
-	ft_printf("datacheck\n");
 	set_orient(&game);
-	ft_printf("set orient\n");
 	if (find_path(&game) == 0)
 	{
 		puterr("Error: Map is not solvable\n");
 		exit_cleanly(&game, 2);
 	}
 	mlx_loop(game.mlx.data);
-	ft_printf("after mlx\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:35:41 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/24 14:30:00 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 22:47:04 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	exit_cleanly(t_cubed *game, int code)
 	mlx_destroy_window(game->mlx.data, game->mlx.win);
 	mlx_destroy_display(game->mlx.data);
 	free(game->mlx.data);
-
 	if (game->map == NULL)
 		exit(code);
 	i = 0;

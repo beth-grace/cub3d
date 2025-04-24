@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:26:02 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/24 00:42:34 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 22:16:57 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_cubed
 int		keycheck(int key_code, t_cubed *game);
 void	map_gen(t_cubed *game);
 void	char_error(t_cubed *game);
+bool	is_map_line(const char *line);
 
 //maze_solver
 char	**copy_map(t_cubed *game);
@@ -173,7 +174,7 @@ void	perpendicular(t_player *player);
 //utils
 int		deg_to_rad(int n);
 int		rad_to_deg(int n);
-int		parse_line(t_cubed *game, char *line, int *map_index);
+void	parse_line(t_cubed *game, char *line, int *map_index);
 void	vec2_normalise(double vec[2]);
 void	vec2_trunc_copy(int dst[2], const double src[2]);
 void	skip_whitespace(const char *str, int *i);

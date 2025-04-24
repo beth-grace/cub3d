@@ -6,7 +6,7 @@
 /*   By: cadlard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:41:44 by cadlard           #+#    #+#             */
-/*   Updated: 2025/04/24 00:40:49 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 22:26:15 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	strip_whitespace(char *str)
 	int	i;
 
 	i = ft_strlen(str) - 1;
-	while (i > 0 && ft_isspace(str[i]))
+	while (i >= 0 && ft_isspace(str[i]))
 	{
 		str[i] = '\0';
 		i--;

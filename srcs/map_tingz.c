@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/24 14:32:59 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 22:19:58 by cadlard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,6 @@ void	read_map(t_cubed *game, char *file)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		else if (line[0] == '\0' || line[0] == '\n')
-		{
-			free(line);
-			continue ;
-		}
 		(void)parse_line(game, line, &map_index);
 	}
 	close(fd);
