@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 01:49:15 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/24 14:19:38 by cadlard          ###   ########.fr       */
+/*   Updated: 2025/04/24 15:28:03 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	check_colour_codes(char *s)
 
 	index = 1;
 	len = ft_strlen(s);
-	if (!len || !ft_isdigit((int)s[++index]))
+	if (!len)
 		return (0);
 	ft_printf("not first one\n");
 	while (s[++index])
