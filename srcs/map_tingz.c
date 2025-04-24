@@ -6,7 +6,7 @@
 /*   By: beefie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:15:04 by beefie            #+#    #+#             */
-/*   Updated: 2025/04/23 23:48:18 by beefie           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:25:27 by beefie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	char_check2(t_cubed *game, char *line, int line_num, int index)
 		game->player_c++;
 		game->player.player[X] = index + 0.5;
 		game->player.player[Y] = line_num + 0.5;
-		game->xlocation = line[index];
+		game->xlocation = index;
 	}
 	else if (line[index] == 'W')
 	{
@@ -28,7 +28,7 @@ static void	char_check2(t_cubed *game, char *line, int line_num, int index)
 		game->player_c++;
 		game->player.player[X] = index + 0.5;
 		game->player.player[Y] = line_num + 0.5;
-		game->xlocation = line[index];
+		game->xlocation = index;
 	}
 }
 
@@ -45,7 +45,7 @@ void	char_check(t_cubed *game, char *line, int line_num)
 			game->player_c++;
 			game->player.player[X] = index + 0.5;
 			game->player.player[Y] = line_num + 0.5;
-			game->xlocation = line[index];
+			game->xlocation = index;
 		}
 		else if (line[index] == 'E')
 		{
@@ -53,7 +53,7 @@ void	char_check(t_cubed *game, char *line, int line_num)
 			game->player_c++;
 			game->player.player[X] = index + 0.5;
 			game->player.player[Y] = line_num + 0.5;
-			game->xlocation = line[index];
+			game->xlocation = index;
 		}
 		else if (line[index] == 'S' || line[index] == 'W')
 			char_check2(game, line, line_num, index);
@@ -96,7 +96,7 @@ void	map_size(t_cubed *game, char *file)
 		else if (game->width < (int)ft_strlen(line) - 1)
 			game->width = ft_strlen(line) - 1;
 		char_check(game, line, game->height);
-		if (game->xlocation)
+		if (game->xlocation && (!game->ylocation))
 			game->ylocation = game->height;
 		game->height++;
 		free(line);
